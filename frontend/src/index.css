@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* Base styles / Reset tweaks */
+body {
+  font-family: var(--font-sans);
+  @apply text-slate-800 bg-[#F8FAFC];
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+}
+
+button, a {
+  cursor: pointer;
+}
+
+/* Smooth globally applied transitions */
+.transition-all {
+  transition-duration: 400ms !important;
+}
+
+/* 🌀 ULTRA-PREMIUM SCROLLBAR 
+   Making the scrollbar slim and stylish to ensure the 
+   site feels finished and top-tier across desktop browsers. */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FAFC; /* Matches body bg */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E2E8F0; /* Slate-200 default */
+  border-radius: 100px;
+  border: 1px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6366F1; /* Indigo-500 on hover */
+  cursor: pointer;
+}
+
+/* Fix for Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E2E8F0 #F8FAFC;
+}

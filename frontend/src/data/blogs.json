@@ -1,0 +1,99 @@
+[
+  {
+    "id": 1,
+    "title": "Mastering the Art of Capsule Wardrobes",
+    "subtitle": "Timeless Elegance",
+    "date": "12th August 2022",
+    "imageUrl": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800",
+    "content": "A capsule wardrobe is a collection of essential items of clothing that don't go out of fashion. These items can be augmented with seasonal pieces to keep your look fresh and modern. The goal is to have a versatile and modular wardrobe where everything works together."
+  },
+  {
+    "id": 2,
+    "title": "Unveiling the Hottest Beachwear Trends",
+    "subtitle": "Summer Breeze",
+    "date": "18th January 2023",
+    "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800",
+    "content": "Summer 2023 is all about vibrant colors, bold prints, and sustainable materials. From retro-inspired high-waisted bikinis to flowy cover-ups, we explore what you'll be seeing on the beaches this year."
+  },
+  {
+    "id": 3,
+    "title": "Navigating the World of Women's Tailoring",
+    "subtitle": "Power Dressing",
+    "date": "5th January 2025",
+    "imageUrl": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=800",
+    "content": "Professional attire doesn't have to be boring. Modern tailoring offers a range of options, from sharp blazers to perfectly fitted trousers, allowing women to express their personality while maintaining a professional image."
+  },
+  {
+    "id": 4,
+    "title": "The World's Best Fashion Fair 2025",
+    "subtitle": "New York Times",
+    "date": "25th May 2025",
+    "imageUrl": "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800",
+    "content": "The 2025 Fashion Fair in New York showcased the pinnacle of design and innovation. We take a look at the standout collections and emerging designers who are set to redefine the industry."
+  },
+  {
+    "id": 5,
+    "title": "The Evolution of Minimalist Fashion",
+    "subtitle": "Modern Simplicity",
+    "date": "10th June 2025",
+    "imageUrl": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800",
+    "content": "Minimalist fashion has evolved from a trend into a lifestyle choice. Discover how to create a sleek, functional wardrobe that focuses on quality over quantity and provides a distraction-free approach to dressing."
+  },
+  {
+    "id": 6,
+    "title": "Sustainable Fabrics: A Guide to Eco-Living",
+    "subtitle": "Green Future",
+    "date": "22nd July 2025",
+    "imageUrl": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=800",
+    "content": "Explore the world of eco-friendly fabrics, from organic cotton and linen to innovative recycled materials. Learn how your fashion choices can make a positive impact on the environment."
+  },
+  {
+    "id": 7,
+    "title": "Accessory Overload: How to Style Details",
+    "subtitle": "Final Touches",
+    "date": "15th August 2025",
+    "imageUrl": "https://images.unsplash.com/photo-1509319117193-57bab727e09d?auto=format&fit=crop&q=80&w=800",
+    "content": "Accessories can transform an entire outfit. In this guide, we discuss how to layer jewelry, choose the right bag, and use scarves to add a pop of color and personality to your everyday look."
+  },
+  {
+    "id": 8,
+    "title": "The Return of Vintage Streetwear",
+    "subtitle": "Retro Vibes",
+    "date": "5th September 2025",
+    "imageUrl": "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&q=80&w=800",
+    "content": "90s streetwear is making a massive comeback. From oversized hoodies to classic sneakers and bold logos, we show you how to blend vintage aesthetics with contemporary style."
+  },
+  {
+    "id": 9,
+    "title": "Essential Winter Layering Techniques",
+    "subtitle": "Cozy Seasons",
+    "date": "20th October 2025",
+    "imageUrl": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=800",
+    "content": "Staying warm doesn't mean sacrificing style. Master the art of layering with our tips on combining textures, colors, and different types of outerwear for a chic winter look."
+  },
+  {
+    "id": 10,
+    "title": "Evening Wear: Sparkle and Shine",
+    "subtitle": "Night Out",
+    "date": "15th November 2025",
+    "imageUrl": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&q=80&w=800",
+    "content": "Prepare for the festive season with our guide to evening wear. From elegant gowns to shimmering accessories, find out how to stand out at every event."
+  },
+  {
+    "id": 11,
+    "title": "Color Palette Trends for 2026",
+    "subtitle": "Vibrant Year",
+    "date": "1st January 2026",
+    "imageUrl": "https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&q=80&w=800",
+    "content": "As we enter 2026, new color palettes are emerging. We explore the dominant hues and how you can integrate them into your wardrobe and home decor."
+  },
+  {
+    "id": 12,
+    "title": "Smart Casual: Perfecting the Office Look",
+    "subtitle": "Work Stylin",
+    "date": "10th February 2026",
+    "imageUrl": "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&q=80&w=800",
+    "content": "Navigating the smart-casual dress code can be tricky. This article provides practical advice on how to strike the perfect balance between professional and comfortable for your workplace."
+  }
+]
+  
