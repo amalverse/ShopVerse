@@ -4,11 +4,8 @@ import { RouterProvider } from "react-router-dom";
 import router from "./routers/router.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
-import { registerSW } from "virtual:pwa-register";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 
-// Register PWA service worker for automatic updates
-registerSW({ immediate: true });
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
