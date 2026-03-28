@@ -1,42 +1,46 @@
+/* eslint-disable react-refresh/only-export-components */
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Home from "../pages/home/Home";
-import CategoryPage from "../pages/category/CategoryPage";
-import Search from "../pages/search/Search";
-import ShopPage from "../pages/shop/ShopPage";
-import CartPage from "../pages/shop/CartPage";
-import FavoritesPage from "../pages/shop/FavoritesPage";
-import SingleProduct from "../pages/shop/productDetails/SingleProduct";
-import Login from "../components/auth/Login";
-import Register from "../components/auth/Register";
-import VerifyEmail from "../components/auth/VerifyEmail";
-import ForgotPassword from "../components/auth/ForgotPassword";
-import ResetPassword from "../components/auth/ResetPassword";
-import Contact from "../components/Contact";
-import BlogPage from "../pages/blog/BlogPage";
-import SingleBlogPage from "../pages/blog/SingleBlogPage";
-import PaymentSuccess from "../pages/shop/PaymentSuccess";
-import PaymentCancel from "../pages/shop/PaymentCancel";
-import DashboardLayout from "../pages/dashboard/DashboardLayout";
-import DashboardHome from "../pages/dashboard/DashboardHome";
-import UserOrders from "../pages/dashboard/user/UserOrders";
-import UserProfile from "../pages/dashboard/user/UserProfile";
-import ManageOrders from "../pages/dashboard/admin/ManageOrders";
-import ManageProducts from "../pages/dashboard/admin/ManageProducts";
-import ManageUsers from "../pages/dashboard/admin/ManageUsers";
-import AdminProfile from "../pages/dashboard/admin/AdminProfile";
 
-import OurStory from "../pages/info/OurStory";
-import JoinOurTeam from "../pages/info/JoinOurTeam";
-import TermsAndConditions from "../pages/info/TermsAndConditions";
-import SupportCenter from "../pages/info/SupportCenter";
-import WhatWeOffer from "../pages/info/WhatWeOffer";
-import HelpAndFAQ from "../pages/info/HelpAndFAQ";
-import PaymentMethods from "../pages/info/PaymentMethods";
-import MoneyBackGuarantee from "../pages/info/MoneyBackGuarantee";
-import ReturnsAndExchanges from "../pages/info/ReturnsAndExchanges";
-import ShippingInformation from "../pages/info/ShippingInformation";
-import PrivacyPolicy from "../pages/info/PrivacyPolicy";
+// Lazy loading components for better performance
+const Home = lazy(() => import("../pages/home/Home"));
+const CategoryPage = lazy(() => import("../pages/category/CategoryPage"));
+const Search = lazy(() => import("../pages/search/Search"));
+const ShopPage = lazy(() => import("../pages/shop/ShopPage"));
+const CartPage = lazy(() => import("../pages/shop/CartPage"));
+const FavoritesPage = lazy(() => import("../pages/shop/FavoritesPage"));
+const SingleProduct = lazy(() => import("../pages/shop/productDetails/SingleProduct"));
+const Login = lazy(() => import("../components/auth/Login"));
+const Register = lazy(() => import("../components/auth/Register"));
+const VerifyEmail = lazy(() => import("../components/auth/VerifyEmail"));
+const ForgotPassword = lazy(() => import("../components/auth/ForgotPassword"));
+const ResetPassword = lazy(() => import("../components/auth/ResetPassword"));
+const Contact = lazy(() => import("../components/Contact"));
+const BlogPage = lazy(() => import("../pages/blog/BlogPage"));
+const SingleBlogPage = lazy(() => import("../pages/blog/SingleBlogPage"));
+const PaymentSuccess = lazy(() => import("../pages/shop/PaymentSuccess"));
+const PaymentCancel = lazy(() => import("../pages/shop/PaymentCancel"));
+const DashboardLayout = lazy(() => import("../pages/dashboard/DashboardLayout"));
+const DashboardHome = lazy(() => import("../pages/dashboard/DashboardHome"));
+const UserOrders = lazy(() => import("../pages/dashboard/user/UserOrders"));
+const UserProfile = lazy(() => import("../pages/dashboard/user/UserProfile"));
+const ManageOrders = lazy(() => import("../pages/dashboard/admin/ManageOrders"));
+const ManageProducts = lazy(() => import("../pages/dashboard/admin/ManageProducts"));
+const ManageUsers = lazy(() => import("../pages/dashboard/admin/ManageUsers"));
+const AdminProfile = lazy(() => import("../pages/dashboard/admin/AdminProfile"));
+
+const OurStory = lazy(() => import("../pages/info/OurStory"));
+const JoinOurTeam = lazy(() => import("../pages/info/JoinOurTeam"));
+const TermsAndConditions = lazy(() => import("../pages/info/TermsAndConditions"));
+const SupportCenter = lazy(() => import("../pages/info/SupportCenter"));
+const WhatWeOffer = lazy(() => import("../pages/info/WhatWeOffer"));
+const HelpAndFAQ = lazy(() => import("../pages/info/HelpAndFAQ"));
+const PaymentMethods = lazy(() => import("../pages/info/PaymentMethods"));
+const MoneyBackGuarantee = lazy(() => import("../pages/info/MoneyBackGuarantee"));
+const ReturnsAndExchanges = lazy(() => import("../pages/info/ReturnsAndExchanges"));
+const ShippingInformation = lazy(() => import("../pages/info/ShippingInformation"));
+const PrivacyPolicy = lazy(() => import("../pages/info/PrivacyPolicy"));
 
 const router = createBrowserRouter([
   {

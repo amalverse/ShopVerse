@@ -76,6 +76,22 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("framer-motion")) return "vendor-framer";
+            if (id.includes("stripe")) return "vendor-stripe";
+            if (id.includes("swiper")) return "vendor-swiper";
+            if (id.includes("react")) return "vendor-react";
+            return "vendor"; // other libraries
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000, // Optional: increase limit to 1000kb if needed
+  },
   test: {
     globals: true,
     environment: "jsdom",

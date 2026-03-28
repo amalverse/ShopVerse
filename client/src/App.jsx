@@ -11,6 +11,8 @@ import { BASE_URL } from "./utils/baseURL";
 import Chatbot from "./components/Chatbot";
 import useScrollToTop from "./hooks/useScrollToTop";
 import { setUser } from "./redux/features/auth/authSlice";
+import Spinner from "./components/ui/Spinner";
+import { Suspense } from "react";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -71,7 +73,9 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <Suspense fallback={<div className="flex items-center justify-center min-vh-100 py-20"><Spinner /></div>}>
+        <Outlet />
+      </Suspense>
       <Footer />
       <Chatbot />
       <ToastContainer position="bottom-right" autoClose={3000} />

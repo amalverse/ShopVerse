@@ -7,6 +7,7 @@ const swaggerSpec = require("./src/swagger/swagger");
 const morgan = require("morgan");
 const logger = require("./src/utils/logger");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const passport = require("./src/middleware/passport");
 
 const app = express();
@@ -28,10 +29,16 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'secret',
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.DB_URL,
+    ttl: 24 * 60 * 60 // 1 day in seconds
+  }),
   cookie: {
     secure: process.env.NODE_ENV === "production",
-    maxAge: 24 * 60 * 60 * 1000
-  }
+    maxAge: 24 * 60 * 60 * 1000,
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
+  },
+  proxy: process.env.NODE_ENV === "production"
 }));
 app.use(passport.initialize());
 app.use(passport.session());
