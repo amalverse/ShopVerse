@@ -1,55 +1,307 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Inter", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Soothing Light Palette ── */
+  --bg-primary: #F0F4FF;
+  --bg-secondary: #E8EEFF;
+  --text-primary: #1E293B;
+  --text-secondary: #64748B;
+  --accent: #6366F1;
+  --accent-soft: #818CF8;
+  --accent-glow: rgba(99, 102, 241, 0.15);
+
+  /* ── Glass Tokens ── */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg-strong: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 8px 32px rgba(99, 102, 241, 0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --glass-shadow-lg: 0 20px 60px rgba(99, 102, 241, 0.12), 0 4px 12px rgba(0,0,0,0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
 }
 
-/* Base styles / Reset tweaks */
+/* ─────────────────────────────────────────────────────────────
+   GOOGLE FONTS IMPORT
+───────────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap");
+
+/* ─────────────────────────────────────────────────────────────
+   BASE RESET
+───────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
-  @apply text-slate-800 bg-[#F8FAFC];
+  background: linear-gradient(135deg, #F0F4FF 0%, #E8EEFF 40%, #F5F0FF 70%, #EEF4FF 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   AMBIENT BACKGROUND ORBS (Body-level decorative blobs)
+   Applied via ::before on a wrapper if needed
+───────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, .font-serif {
   font-family: var(--font-serif);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
 }
 
 button, a {
   cursor: pointer;
 }
 
-/* Smooth globally applied transitions */
-.transition-all {
-  transition-duration: 400ms !important;
+/* ─────────────────────────────────────────────────────────────
+   GLASSMORPHISM UTILITY CLASSES
+───────────────────────────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
-/* 🌀 ULTRA-PREMIUM SCROLLBAR 
-   Making the scrollbar slim and stylish to ensure the 
-   site feels finished and top-tier across desktop browsers. */
+.glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-lg);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 16px 48px rgba(99, 102, 241, 0.14), 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.80);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.06);
+}
+
+.glass-modal {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 32px 80px rgba(99, 102, 241, 0.18), 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.glass-footer {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(226, 232, 240, 0.8);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  outline: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GRADIENT ACCENTS
+───────────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #6366F1, #8B5CF6, #EC4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-btn {
+  background: linear-gradient(135deg, #6366F1, #818CF8);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+}
+
+.gradient-btn:hover {
+  background: linear-gradient(135deg, #4F46E5, #6366F1);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.4);
+  transform: translateY(-1px);
+}
+
+.gradient-btn:active {
+  transform: translateY(0);
+}
+
+/* Accent bar underline for headings */
+.accent-bar::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: linear-gradient(90deg, #6366F1, #8B5CF6);
+  border-radius: 100px;
+  margin: 0.75rem auto 0;
+}
+
+.accent-bar-left::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: linear-gradient(90deg, #6366F1, #8B5CF6);
+  border-radius: 100px;
+  margin: 0.75rem 0 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MICRO-ANIMATIONS
+───────────────────────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes orb-spin {
+  from { transform: rotate(0deg) scale(1); }
+  to { transform: rotate(360deg) scale(1.05); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.35s ease both;
+}
+
+/* Shimmer skeleton */
+.shimmer {
+  background: linear-gradient(90deg, #f0f4ff 25%, #e8eeff 50%, #f0f4ff 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PREMIUM SCROLLBAR
+───────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F8FAFC; /* Matches body bg */
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E2E8F0; /* Slate-200 default */
+  background: linear-gradient(180deg, #c7d2fe, #a5b4fc);
   border-radius: 100px;
-  border: 1px solid transparent;
-  background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366F1; /* Indigo-500 on hover */
-  cursor: pointer;
+  background: linear-gradient(180deg, #818cf8, #6366f1);
 }
 
-/* Fix for Firefox scrollbar styling */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #E2E8F0 #F8FAFC;
+  scrollbar-color: #c7d2fe transparent;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TRANSITION OVERRIDES
+───────────────────────────────────────────────────────────── */
+.transition-all {
+  transition-duration: 350ms !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SWIPER CUSTOM OVERRIDES
+───────────────────────────────────────────────────────────── */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #6366F1 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+.swiper-pagination-bullet {
+  background: #c7d2fe !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #6366F1 !important;
+  transform: scale(1.3);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TOAST OVERRIDES
+───────────────────────────────────────────────────────────── */
+.Toastify__toast {
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
 }

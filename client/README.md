@@ -84,10 +84,18 @@ Follow these steps to run the frontend application locally:
 
 ---
 
-## 🌐 Deployment
+## 🌐 Deployment (Netlify)
 
-1. **Vercel or Netlify:** Connect your GitHub repository to platforms like Vercel or Netlify.
-2. **Set Build Commands:**
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-3. **Environment Setup:** Make sure to add the `VITE_BASE_URL` pointing to your deployed backend URL in your deployment platform's environment variables settings.
+Deploying the ShopVerse frontend to Netlify is quick and seamless.
+
+1. **Push to GitHub**: Ensure your `client` folder is pushed to a GitHub repository.
+2. **Connect to Netlify**: Log in to Netlify and click "Import from Git".
+3. **Configure Build Settings**:
+   - **Base directory**: `client`
+   - **Build command**: `npm run build`
+   - **Publish directory**: `dist`
+4. **Environment Variables**: Add your backend API URL in Netlify's Environment Variables section:
+   - `VITE_BASE_URL` = `https://your-backend-url.onrender.com`
+   - `VITE_STRIPE_PUBLISHABLE_KEY` = `your_stripe_public_key`
+5. **Deploy**: Click "Deploy Site". Netlify will automatically build and publish your Vite React app.
+6. **Redirects (Important)**: Vite SPAs require a `_redirects` file or netlify.toml for routing. Ensure you have a `public/_redirects` file containing `/* /index.html 200` to prevent 404 errors on page refresh.

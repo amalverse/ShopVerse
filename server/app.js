@@ -35,15 +35,25 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// --- CORS Configuration ---
-// Setting up CORS so frontend can talk to backend without errors
-const clientURL = process.env.CLIENT_URL || "http://localhost:5173";
+// Setting up CORS to safely allow requests from frontend (Development & Production)
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  process.env.CLIENT_URL,
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: clientURL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin) || allowedOrigins.some((url) => origin.startsWith(url))) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
-  }),
+  })
 );
 
 // --- Routes Import ---
@@ -91,10 +101,10 @@ app.get("/products/:category", async (req, res) => {
   }
 });
 
-// Swagger API Docs
+// Swagger API Docs Setup
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
-  customSiteTitle: "ShopVerse API Docs",
-  customCss: `.swagger-ui .topbar { background-color: #FC3D57; } .swagger-ui .topbar-wrapper img { content: url(''); } .swagger-ui .topbar-wrapper::before { content: '🛒 ShopVerse API'; color: white; font-size: 1.2rem; font-weight: bold; }`,
+  customSiteTitle: "ShopVerse API Documentation",
+  customCss: `.swagger-ui .topbar { background-color: #4f46e5; } .swagger-ui .topbar-wrapper img { content: url(''); } .swagger-ui .topbar-wrapper::before { content: '🛒 ShopVerse API'; color: white; font-size: 1.2rem; font-weight: bold; }`,
   swaggerOptions: { persistAuthorization: true },
 }));
 

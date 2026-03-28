@@ -48,6 +48,8 @@ router.post("/create-checkout-session", async (req, res) => {
   }
 });
 
+const sendEmail = require("../utils/sendEmail");
+
 // confirm payment
 router.post("/confirm-payment", async (req, res) => {
   const { session_id } = req.body;
@@ -61,8 +63,10 @@ router.post("/confirm-payment", async (req, res) => {
 
     // First, check if we already saved this order in our database
     let order = await Order.findOne({ orderId: paymentId });
+    let isNewOrder = false;
 
     if (!order) {
+      isNewOrder = true;
       const Product = require('../products/products.model');
       
       // If we didn't save it yet, we create a new order based on the info from Stripe
@@ -100,7 +104,65 @@ router.post("/confirm-payment", async (req, res) => {
 
     // Save the order to MongoDB
     await order.save();
-    logger.info(`Payment confirmed and order saved: ${paymentId} for ${emailObj} - Status: ${orderStatus}`);
+    logger.info(`Payment confirmed and order saved: ${paymentId} for ${order.email} - Status: ${orderStatus}`);
+
+    // SEND EMAIL NOTIFICATION (Only for new successful orders)
+    if (isNewOrder && (orderStatus === "pending" || session.payment_status === "paid")) {
+      try {
+        const productRows = order.products.map(p => `
+          <tr>
+            <td style="padding: 12px; border-bottom: 1px solid #eee;">${p.itemName}</td>
+            <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">${p.quantity}</td>
+            <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: right;">$${p.price.toFixed(2)}</td>
+          </tr>
+        `).join('');
+
+        await sendEmail({
+          email: order.email,
+          subject: `Order Confirmed - ShopVerse #${order._id.toString().slice(-6).toUpperCase()}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+              <div style="background-color: #4f46e5; color: white; padding: 40px; text-align: center;">
+                <h1 style="margin: 0; font-size: 28px;">Thank You for Your Order!</h1>
+                <p style="margin-top: 10px; opacity: 0.9;">We've received your payment and are processing your items.</p>
+              </div>
+              <div style="padding: 30px;">
+                <h2 style="font-size: 18px; margin-bottom: 20px;">Order Summary</h2>
+                <table style="width: 100%; border-collapse: collapse;">
+                  <thead>
+                    <tr style="background-color: #f8fafc;">
+                      <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e2e8f0;">Item</th>
+                      <th style="padding: 12px; text-align: center; border-bottom: 2px solid #e2e8f0;">Qty</th>
+                      <th style="padding: 12px; text-align: right; border-bottom: 2px solid #e2e8f0;">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${productRows}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2" style="padding: 20px 12px; text-align: right; font-weight: bold;">Grand Total:</td>
+                      <td style="padding: 20px 12px; text-align: right; font-weight: bold; color: #4f46e5; font-size: 20px;">$${order.amount.toFixed(2)}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+                <div style="margin-top: 40px; padding: 20px; background-color: #f1f5f9; border-radius: 8px;">
+                  <h3 style="font-size: 14px; margin-top: 0;">What's Next?</h3>
+                  <p style="font-size: 13px; color: #64748b; line-height: 1.6;">Our team is now preparing your order for shipment. You'll receive another email with a tracking number as soon as your package is on its way.</p>
+                </div>
+              </div>
+              <div style="background-color: #f8fafc; padding: 20px; text-align: center; font-size: 12px; color: #94a3b8;">
+                &copy; ${new Date().getFullYear()} ShopVerse Inc. All rights reserved.
+              </div>
+            </div>
+          `
+        });
+        logger.info(`Confirmation email sent to ${order.email}`);
+      } catch (emailError) {
+        logger.error(`Failed to send confirmation email: ${emailError.message}`);
+        // We don't fail the request if the email fails, as the order is already saved.
+      }
+    }
 
     res.json({ order });
   } catch (error) {

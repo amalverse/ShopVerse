@@ -364,6 +364,27 @@ This project is licensed under the **ISC License**.
 
 ---
 
+## 🌐 Platform Deployment Strategies
+
+### 1. Backend (Render)
+Render is an excellent platform for Node.js apps.
+- **Connect** your repository to Render -> Choose **Web Service**.
+- **Root Directory**: `server/` (or run `cd server && npm install` / `cd server && npm start` if the project is mono-repo).
+- **Environment Variables**: Populate all keys (`DB_URL`, `JWT_SECRET_KEY`, `STRIPE_SECRET_KEY`, `GEMINI_API_KEY`). Specifically, set `CLIENT_URL` to your production Netlify URL (e.g., `https://your-shopverse.netlify.app`).
+- **Deploy**: Render will automatically build and start the server.
+
+### 2. Frontend (Netlify)
+Deploying the Vite React app to Netlify ensures automatic deployments and CDN hosting.
+- **Connect** your repository to Netlify via "Import from Git".
+- **Build Settings**:
+  - **Base directory**: `client`
+  - **Build Command**: `npm run build`
+  - **Publish directory**: `dist`
+- **Environment Variables**: Add `VITE_API_BASE_URL` pointing to the Render backend URL (e.g., `https://shopverse-backend.onrender.com`).
+- **Client Routing**: A `_redirects` file is included in `public/` to ensure React Router works natively without 404 errors.
+
+---
+
 ## 👨‍💻 Author
 
 **Amal Kishor**

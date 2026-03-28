@@ -110,13 +110,17 @@ This interactive dashboard details all routes for:
 
 ---
 
-## 🌐 Deployment (e.g., Render)
+## 🌐 Deployment (Render)
 
-1. Connect your repository to a hosting provider like Render.
-2. Select the `backend` folder as the root directory.
-3. Add the required Environment Variables (`DB_URL`, `JWT_SECRET_KEY`, `CLIENT_URL` pointing to your deployed frontend, etc.).
-4. Use `npm install` for the build command.
-5. Use `npm start` for the start command.
+Render is the recommended platform for hosting this API.
+
+1. Connect your repository to Render and create a **Web Service**.
+2. **Build Settings**:
+   - **Root Directory**: `server`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+3. **Environment Setup**: Add all necessary Environment Variables from `.env.example` (`DB_URL`, `JWT_SECRET_KEY`, `STRIPE_SECRET_KEY`, `GEMINI_API_KEY`).
+4. Set `CLIENT_URL` to your production frontend URL (e.g., `https://your-shopverse.netlify.app`) to ensure CORS works smoothly.
 
 ---
 

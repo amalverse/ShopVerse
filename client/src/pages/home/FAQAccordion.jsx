@@ -33,7 +33,7 @@ const FAQAccordion = () => {
   };
 
   return (
-    <section className="bg-slate-50 py-16 px-4">
+    <section className="py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-slate-900 mb-12 font-sans">
           Frequently Asked Questions
@@ -42,7 +42,7 @@ const FAQAccordion = () => {
           {faqData.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden"
+              className="glass-card rounded-2xl overflow-hidden mb-4"
             >
               <button
                 onClick={() => toggleAccordion(index)}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FiShoppingBag, FiHeart, FiTrash2 } from "react-icons/fi";
+import { FiShoppingBag, FiHeart, FiTrash2, FiEye } from "react-icons/fi";
 import RatingStars from "../RatingStars";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice.js";
@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { BASE_URL } from "../../utils/baseURL";
 import { motion } from "framer-motion";
 
-const ProductCard = ({ product, isFavoritePage, onRemoveFavorite }) => {
+const ProductCard = ({ product, isFavoritePage, onRemoveFavorite, onQuickView }) => {
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart.products);
   const { user } = useSelector((state) => state.auth);
@@ -71,9 +71,9 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -8 }}
-      className="bg-white border border-slate-200 rounded-3xl overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 relative"
+      className="glass-card rounded-3xl overflow-hidden group hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(99,102,241,0.15)] transition-all duration-300 relative"
     >
-      <div className="relative overflow-hidden aspect-[4/5] bg-slate-100">
+      <div className="relative overflow-hidden aspect-[4/5] bg-slate-50/30">
         <Link to={`/shop/${product._id}`} className="block h-full w-full">
           <motion.img
             src={product.image}
@@ -81,8 +81,6 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite }) => {
             className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
           />
         </Link>
-        
-        {/* badges if needed, e.g. "Sale" or "New" can go here */}
         
         <div className="absolute top-4 right-[-60px] group-hover:right-4 flex flex-col gap-2 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
           {isFavoritePage ? (
@@ -108,6 +106,18 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite }) => {
               <FiHeart className="w-5 h-5" />
             </button>
           )}
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              if (onQuickView) onQuickView(product);
+            }}
+            className="bg-white/95 backdrop-blur-md p-3.5 text-slate-400 hover:text-indigo-600 rounded-2xl shadow-xl hover:bg-indigo-50 transition-all transform hover:rotate-3 border border-slate-100"
+            title="Quick View"
+          >
+            <FiEye className="w-5 h-5" />
+          </button>
+
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -121,10 +131,10 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite }) => {
         </div>
       </div>
       
-      <div className="p-6">
+      <Link to={`/shop/${product._id}`} className="block p-6">
         <div className="flex justify-between items-start mb-2">
            <h4 className="font-sans text-base font-bold text-slate-800 truncate flex-1 group-hover:text-indigo-600 transition-colors">
-             {product.name}
+              {product.name}
            </h4>
         </div>
         
@@ -140,13 +150,13 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite }) => {
           )}
         </div>
         
-        {/* Category tag */}
         <div className="mt-4 pt-4 border-t border-slate-50 flex items-center justify-between">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{product.category}</span>
             <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Shop Now →</span>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 };
+
 export default ProductCard;

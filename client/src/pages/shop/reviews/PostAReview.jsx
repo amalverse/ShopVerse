@@ -107,7 +107,7 @@ const PostAReview = ({ isModalOpen, handleClose }) => {
             onChange={(e) => setComment(e.target.value)}
             rows="4"
             placeholder="What did you love? How's the quality? Everything you wish you knew before buying..."
-            className="w-full border border-slate-200 rounded-2xl p-5 text-sm text-slate-700 bg-slate-50 focus:outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-400 resize-none transition-all placeholder:text-slate-400"
+            className="w-full border border-slate-200 rounded-2xl p-5 text-sm text-slate-700 bg-slate-50 focus:outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-400 resize-none transition-all placeholder"
           />
         </div>
 

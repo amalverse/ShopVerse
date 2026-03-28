@@ -2,15 +2,47 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
+import compression from "vite-plugin-compression";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    compression({
+      algorithm: "brotliCompress",
+      ext: ".br",
+    }),
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["fav-icon.png", "pwa-192x192.png", "pwa-512x512.png", "maskable-icon.png"],
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,png,jpg,svg,woff2}"],
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.destination === "image",
+            handler: "CacheFirst",
+            options: {
+              cacheName: "images-cache",
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+              },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com/,
+            handler: "StaleWhileRevalidate",
+            options: {
+              cacheName: "google-fonts-cache",
+            },
+          },
+        ],
+      },
       manifest: {
         name: "ShopVerse - Premium E-Commerce",
         short_name: "ShopVerse",
@@ -39,9 +71,15 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
   test: {
     globals: true,
     environment: "jsdom",
     setupFiles: "./src/tests/setup.js",
   },
 });
+

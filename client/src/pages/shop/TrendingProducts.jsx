@@ -10,7 +10,6 @@ const TrendingProducts = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +28,7 @@ const TrendingProducts = () => {
   };
 
   return (
-    <section className="bg-white py-24">
+    <section className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header section with badge */}
         <div className="text-center mb-16 space-y-4">
@@ -68,7 +67,7 @@ const TrendingProducts = () => {
           )}
           <Link
             to="/shop"
-            className="w-full md:w-auto px-10 py-4 bg-white border border-slate-200 text-slate-600 font-bold rounded-2xl hover:text-indigo-600 hover:border-indigo-100 transition-all flex items-center justify-center gap-2 group"
+            className="w-full md:w-auto px-10 py-4 glass-card text-slate-600 font-bold rounded-2xl hover:text-indigo-600 hover:border-indigo-300 transition-all flex items-center justify-center gap-2 group"
           >
             Explore Full Shop
             <FiArrowRight className="group-hover:translate-x-1 transition-transform" />

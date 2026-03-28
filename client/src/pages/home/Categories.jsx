@@ -47,11 +47,11 @@ const Categories = () => {
             to={`/categories${category.path}`}
             className="group flex flex-col items-center"
           >
-            <div className="relative w-40 h-40 sm:w-56 sm:h-56 rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-[0_20px_50px_rgba(79,70,229,0.15)] group-hover:border-indigo-200 group-hover:-translate-y-2 transition-all duration-500 bg-slate-50">
+            <div className="relative w-40 h-40 sm:w-56 sm:h-56 rounded-[2.5rem] overflow-hidden glass-card group-hover:-translate-y-2 transition-all p-2">
               <img
                 src={category.image}
                 alt={category.name}
-                className="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110"
+                className="w-full h-full object-cover rounded-[2rem] transform transition-transform duration-1000 group-hover:scale-110"
               />
               <div className={`absolute inset-0 bg-gradient-to-t ${category.color} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               

@@ -3,6 +3,7 @@ import ProductCards from "../../components/product/ProductCards";
 import ShopFiltering from "./ShopFiltering";
 import { useFetchAllProductsQuery } from "../../redux/features/products/productsApi";
 import { RiFilterLine } from "react-icons/ri";
+import QuickViewModal from "../../components/product/QuickViewModal";
 
 const filters = {
   categories: [
@@ -32,6 +33,10 @@ const ShopPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [ProductsPerPage] = useState(8);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+  // Quick View State
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
   const { category, color, priceRange } = filtersState;
 
@@ -80,36 +85,39 @@ const ShopPage = () => {
     }
   };
 
+  const handleQuickView = (product) => {
+    setSelectedProduct(product);
+    setIsQuickViewOpen(true);
+  };
+
   const startProduct = products.length > 0 ? (currentPage - 1) * ProductsPerPage + 1 : 0;
   const endProduct = products.length > 0 ? startProduct + products.length - 1 : 0;
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen">
+    <div className="bg-[#F8FAFC] min-h-screen transition-colors duration-300">
       {/* Page Hero */}
-      <div className="bg-indigo-600 text-white">
-        <div className="max-w-7xl mx-auto px-6 py-10">
-          <h1 className="text-4xl font-bold font-sans mb-1">Shop</h1>
-          <p className="text-indigo-200 text-sm">
-            Discover our curated collection — from fashion to electronics.
+      <div className="bg-indigo-600 text-white shadow-xl shadow-indigo-100/20">
+        <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+          <h1 className="text-4xl md:text-5xl font-black font-sans mb-3 tracking-tight">Shop</h1>
+          <p className="text-indigo-100 text-sm md:text-base max-w-lg font-medium">
+            Explore our curated collection of premium products, designed to elevate your lifestyle from fashion to tech.
           </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-10">
-        {/* Mobile filter toggle */}
-        <div className="md:hidden mb-4">
+      <div className="max-w-7xl mx-auto px-6 py-10 md:py-16">
+        <div className="md:hidden mb-6">
           <button
             onClick={() => setSidebarOpen((o) => !o)}
-            className="flex items-center gap-2 bg-white border border-slate-200 text-slate-700 text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm hover:bg-indigo-50 hover:border-indigo-300 transition"
+            className="w-full flex items-center justify-center gap-2 glass-card text-slate-700 text-sm font-bold px-4 py-3.5 rounded-2xl shadow-sm hover:border-indigo-400 transition"
           >
-            <RiFilterLine className="text-indigo-600 text-base" />
-            {sidebarOpen ? "Hide Filters" : "Show Filters"}
+            <RiFilterLine className="text-indigo-600 text-lg" />
+            {sidebarOpen ? "Hide Filter Options" : "Show Filter Options"}
           </button>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Sidebar */}
-          <div className={`${sidebarOpen ? "block" : "hidden"} md:block`}>
+        <div className="flex flex-col md:flex-row gap-10">
+          <div className={`${sidebarOpen ? "block" : "hidden"} md:block w-full md:w-64 flex-shrink-0`}>
             <ShopFiltering
               filters={filters}
               filtersState={filtersState}
@@ -118,87 +126,72 @@ const ShopPage = () => {
             />
           </div>
 
-          {/* Products */}
           <div className="flex-1">
-            {/* Results bar */}
-            <div className="flex items-center justify-between mb-5">
-              <p className="text-sm text-slate-500 font-medium">
+            <div className="flex items-center justify-between mb-8">
+              <p className="text-sm text-slate-500 font-bold uppercase tracking-widest">
                 {isLoading ? (
-                  "Loading..."
+                  "Loading Collection..."
                 ) : (
                   <>
-                    Showing{" "}
-                    <span className="text-slate-800 font-semibold">
-                      {startProduct}–{endProduct}
-                    </span>{" "}
-                    of{" "}
-                    <span className="text-slate-800 font-semibold">
-                      {totalProducts || 0}
-                    </span>{" "}
-                    products
+                    Showing <span className="text-indigo-600">{startProduct}–{endProduct}</span> of {totalProducts || 0} Products
                   </>
                 )}
               </p>
             </div>
 
-            {/* Loading */}
             {isLoading && (
-              <div className="flex justify-center items-center py-28">
-                <div className="flex flex-col items-center gap-3 text-slate-400">
-                  <div className="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin" />
-                  <span className="text-sm font-medium">Loading products…</span>
+              <div className="flex justify-center items-center py-32">
+                <div className="flex flex-col items-center gap-4 text-slate-400">
+                  <div className="w-12 h-12 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin" />
+                  <span className="text-xs font-bold uppercase tracking-widest">Fetching Products</span>
                 </div>
               </div>
             )}
 
-            {/* Error */}
             {isError && !isLoading && (
-              <div className="py-20 text-center">
-                <p className="text-slate-500 text-lg">⚠️ Failed to load products.</p>
-                <p className="text-slate-400 text-sm mt-1">Please try again later.</p>
+              <div className="py-24 text-center glass-card rounded-3xl">
+                <p className="text-slate-500 text-lg font-bold">⚠️ Connection Error</p>
+                <p className="text-slate-400 text-sm mt-2">Unable to load the catalog. Please check your connection.</p>
               </div>
             )}
 
-            {/* Empty */}
             {!isLoading && !isError && products.length === 0 && (
-              <div className="py-20 text-center bg-white border border-slate-200 rounded-2xl shadow-sm">
-                <div className="text-5xl mb-4">🔍</div>
-                <h4 className="text-xl font-bold text-slate-700 font-sans mb-2">No Products Found</h4>
-                <p className="text-slate-400 text-sm mb-5">
-                  Try adjusting your filters to find what you're looking for.
+              <div className="py-24 text-center glass-card rounded-3xl">
+                <div className="text-6xl mb-6">🏜️</div>
+                <h4 className="text-2xl font-black text-slate-800 font-sans mb-3">No Results Found</h4>
+                <p className="text-slate-400 text-sm mb-8 max-w-xs mx-auto">
+                  We couldn't find anything matching your filters. Try clearing them to see all products.
                 </p>
                 <button
                   onClick={clearFilters}
-                  className="px-6 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
+                  className="px-8 py-3.5 bg-indigo-600 text-white text-sm font-bold rounded-2xl hover:bg-indigo-700 transition-all shadow-[0_8px_32px_rgba(99,102,241,0.25)]"
                 >
-                  Clear Filters
+                  Reset All Filters
                 </button>
               </div>
             )}
 
-            {/* Products Grid */}
             {!isLoading && !isError && products.length > 0 && (
               <>
-                <ProductCards products={products} />
+                <ProductCards products={products} onQuickView={handleQuickView} />
 
-                {/* Pagination */}
-                <div className="mt-10 flex justify-center items-center gap-2 flex-wrap">
+                <div className="mt-16 flex justify-center items-center gap-3 flex-wrap">
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className="px-4 py-2 text-sm font-semibold bg-white border border-slate-200 text-slate-700 rounded-xl shadow-sm hover:border-indigo-400 hover:text-indigo-600 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="px-6 py-3 text-sm font-bold glass-card text-slate-700 rounded-2xl shadow-sm hover:border-indigo-400 hover:text-indigo-600 transition disabled:opacity-30 disabled:cursor-not-allowed"
                   >
-                    ← Prev
+                    Previous
                   </button>
 
                   {[...Array(totalPages || 0)].map((_, index) => (
                     <button
                       key={index}
                       onClick={() => handlePageChange(index + 1)}
-                      className={`w-10 h-10 text-sm font-semibold rounded-xl transition-all ${
+                      className={`w-12 h-12 text-sm font-black rounded-2xl transition-all ${
                         currentPage === index + 1
-                          ? "bg-indigo-600 text-white shadow-md"
-                          : "bg-white border border-slate-200 text-slate-600 hover:border-indigo-400 hover:text-indigo-600"
+                          ? "bg-indigo-600 text-white shadow-lg"
+                          : "glass-card text-slate-500 hover:border-indigo-400 hover:text-indigo-600"
                       }`}
                     >
                       {index + 1}
@@ -208,9 +201,9 @@ const ShopPage = () => {
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages || totalPages === 0}
-                    className="px-4 py-2 text-sm font-semibold bg-white border border-slate-200 text-slate-700 rounded-xl shadow-sm hover:border-indigo-400 hover:text-indigo-600 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="px-6 py-3 text-sm font-bold glass-card text-slate-700 rounded-2xl shadow-sm hover:border-indigo-400 hover:text-indigo-600 transition disabled:opacity-30 disabled:cursor-not-allowed"
                   >
-                    Next →
+                    Next
                   </button>
                 </div>
               </>
@@ -218,6 +211,12 @@ const ShopPage = () => {
           </div>
         </div>
       </div>
+
+      <QuickViewModal
+        product={selectedProduct}
+        isOpen={isQuickViewOpen}
+        onClose={() => setIsQuickViewOpen(false)}
+      />
     </div>
   );
 };
