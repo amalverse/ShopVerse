@@ -7,7 +7,7 @@ const swaggerSpec = require("./src/swagger/swagger");
 const morgan = require("morgan");
 const logger = require("./src/utils/logger");
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const { MongoStore } = require("connect-mongo");
 const passport = require("./src/middleware/passport");
 
 const app = express();
