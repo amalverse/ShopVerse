@@ -225,13 +225,12 @@ const Navbar = () => {
               { label: "Cosmetics", path: "/categories/cosmetics" }
             ].map((link, idx) => (
               <li key={idx}>
-                <Link 
-                  to={link.path} 
-                  className={`px-3 py-1.5 rounded-xl transition-all duration-300 ${
-                    location.pathname === link.path 
-                      ? 'bg-white text-indigo-700 shadow-xl' 
+                <Link
+                  to={link.path}
+                  className={`px-3 py-1.5 rounded-xl transition-all duration-300 ${location.pathname === link.path
+                      ? 'bg-white text-indigo-700 shadow-xl'
                       : 'hover:bg-white/20'
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -241,7 +240,7 @@ const Navbar = () => {
 
           {/* Right side promo */}
           <div className="hidden lg:flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-indigo-100">
-            <span className="bg-yellow-400 text-indigo-900 px-2 py-0.5 rounded-lg mr-1 animate-pulse">Hot</span> 
+            <span className="bg-yellow-400 text-indigo-900 px-2 py-0.5 rounded-lg mr-1 animate-pulse">Hot</span>
             Clearance Up to 30% Off
           </div>
         </div>
@@ -280,14 +279,13 @@ const Navbar = () => {
               { label: "Cosmetics", path: "/categories/cosmetics" }
             ].map((link, idx) => (
               <li key={idx}>
-                <Link 
-                  to={link.path} 
-                  onClick={() => setIsMobileMenuOpen(false)} 
-                  className={`block py-2 transition ${
-                    location.pathname === link.path 
-                      ? 'text-indigo-600 font-semibold' 
+                <Link
+                  to={link.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block py-2 transition ${location.pathname === link.path
+                      ? 'text-indigo-600 font-semibold'
                       : 'hover:text-indigo-500'
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>

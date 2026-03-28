@@ -19,11 +19,11 @@ const Footer = () => {
     <footer className="w-full bg-white border-t border-slate-100 mt-20 relative overflow-hidden">
       {/* Subtle top accent line */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-      
+
       {/* Main Content Area */}
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 xl:gap-12">
-          
+
           {/* Column 1: Brand & Identity */}
           <div className="space-y-8">
             <div className="nav-logo font-bold text-3xl font-sans tracking-tight">
@@ -35,18 +35,18 @@ const Footer = () => {
               Elevating your daily lifestyle with curated collections and an unwavering commitment to quality.
             </p>
             <div className="space-y-4 pt-4 border-t border-slate-50">
-               <div className="flex items-start gap-4 text-slate-500 group">
-                  <FiMapPin className="text-indigo-500 mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="text-[13px] font-medium leading-relaxed">123 Main Street, Lal Bagh, New Delhi</span>
-               </div>
-               <div className="flex items-center gap-4 text-slate-500 group">
-                  <FiMail className="text-indigo-500 shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="text-[13px] font-medium">hello@shopverse.com</span>
-               </div>
-               <div className="flex items-center gap-4 text-slate-500 group">
-                  <FiPhone className="text-indigo-500 shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="text-[13px] font-medium">+1 234 567 8900</span>
-               </div>
+              <div className="flex items-start gap-4 text-slate-500 group">
+                <FiMapPin className="text-indigo-500 mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="text-[13px] font-medium leading-relaxed">123 Main Street, Lal Bagh, New Delhi</span>
+              </div>
+              <div className="flex items-center gap-4 text-slate-500 group">
+                <FiMail className="text-indigo-500 shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="text-[13px] font-medium">hello@shopverse.com</span>
+              </div>
+              <div className="flex items-center gap-4 text-slate-500 group">
+                <FiPhone className="text-indigo-500 shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="text-[13px] font-medium">+1 234 567 8900</span>
+              </div>
             </div>
           </div>
 
@@ -94,41 +94,41 @@ const Footer = () => {
             </div>
 
             <div className="pt-4 border-t border-slate-50">
-               <div className="flex gap-4">
-                  {[FiInstagram, FiTwitter, FiFacebook, FiYoutube].map((Icon, i) => (
-                    <a key={i} href="#" className="w-10 h-10 bg-slate-50 text-slate-400 rounded-xl flex items-center justify-center hover:bg-indigo-600 hover:text-white hover:shadow-lg hover:shadow-indigo-100 transition-all duration-300">
-                      <Icon className="text-lg" />
-                    </a>
-                  ))}
-               </div>
+              <div className="flex gap-4">
+                {[FiInstagram, FiTwitter, FiFacebook, FiYoutube].map((Icon, i) => (
+                  <a key={i} href="#" className="w-10 h-10 bg-slate-50 text-slate-400 rounded-xl flex items-center justify-center hover:bg-indigo-600 hover:text-white hover:shadow-lg hover:shadow-indigo-100 transition-all duration-300">
+                    <Icon className="text-lg" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Universal Trust Markers Row */}
         <div className="mt-20 pt-10 border-t border-slate-50 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex items-center gap-3 text-slate-400">
-               <FiCheckCircle className="text-emerald-500 text-xl" />
-               <span className="text-[11px] font-black uppercase tracking-widest leading-none">Safe Payment</span>
-            </div>
-            <div className="flex items-center gap-3 text-slate-400">
-               <FiCheckCircle className="text-emerald-500 text-xl" />
-               <span className="text-[11px] font-black uppercase tracking-widest leading-none">Free Shipping On $99+</span>
-            </div>
-            <div className="flex items-center gap-3 text-slate-400">
-               <FiCheckCircle className="text-emerald-500 text-xl" />
-               <span className="text-[11px] font-black uppercase tracking-widest leading-none">30-Day Easy Return</span>
-            </div>
+          <div className="flex items-center gap-3 text-slate-400">
+            <FiCheckCircle className="text-emerald-500 text-xl" />
+            <span className="text-[11px] font-black uppercase tracking-widest leading-none">Safe Payment</span>
+          </div>
+          <div className="flex items-center gap-3 text-slate-400">
+            <FiCheckCircle className="text-emerald-500 text-xl" />
+            <span className="text-[11px] font-black uppercase tracking-widest leading-none">Free Shipping On $99+</span>
+          </div>
+          <div className="flex items-center gap-3 text-slate-400">
+            <FiCheckCircle className="text-emerald-500 text-xl" />
+            <span className="text-[11px] font-black uppercase tracking-widest leading-none">30-Day Easy Return</span>
+          </div>
         </div>
 
         {/* Copyright & Instagram Line */}
         <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-8 py-8 px-8 bg-slate-50 rounded-[2rem] border border-white">
           <div className="flex flex-col gap-1">
-             <p className="text-xs text-slate-500 font-medium">© 2026 ShopVerse Global Inc. All rights reserved.</p>
-             <div className="flex gap-4">
-                <Link to="/privacy" className="text-[10px] text-slate-400 hover:text-indigo-600 font-bold uppercase tracking-widest">Privacy</Link>
-                <Link to="/terms" className="text-[10px] text-slate-400 hover:text-indigo-600 font-bold uppercase tracking-widest">Terms</Link>
-             </div>
+            <p className="text-xs text-slate-500 font-medium">© 2026 ShopVerse Global Inc. All rights reserved.</p>
+            <div className="flex gap-4">
+              <Link to="/privacy" className="text-[10px] text-slate-400 hover:text-indigo-600 font-bold uppercase tracking-widest">Privacy</Link>
+              <Link to="/terms" className="text-[10px] text-slate-400 hover:text-indigo-600 font-bold uppercase tracking-widest">Terms</Link>
+            </div>
           </div>
 
           <div className="flex items-center gap-4">
