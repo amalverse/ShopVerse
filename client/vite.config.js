@@ -81,11 +81,21 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
+            // Keep React core and its mandatory internal dependency 'scheduler' together
+            if (
+              id.includes("/react/") ||
+              id.includes("/react-dom/") ||
+              id.includes("/scheduler/") ||
+              id.includes("/react-is/")
+            ) {
+              return "vendor-react-core";
+            }
             if (id.includes("framer-motion")) return "vendor-framer";
             if (id.includes("stripe")) return "vendor-stripe";
             if (id.includes("swiper")) return "vendor-swiper";
-            if (id.includes("react")) return "vendor-react";
-            return "vendor"; // other libraries
+            // Other react libraries like react-router, react-redux, etc.
+            if (id.includes("react")) return "vendor-react-libs";
+            return "vendor";
           }
         },
       },
