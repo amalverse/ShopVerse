@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../layout/Navbar";
 import { useRegisterUserMutation } from "../../redux/features/auth/authApi";
 import { toast } from "react-toastify";
@@ -12,7 +12,7 @@ const Register = () => {
   const [message, setMessage] = useState("");
 
   const [registerUser, { isLoading }] = useRegisterUserMutation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate(); // Removed unused navigate
 
   const validate = () => {
     let newErrors = {};
@@ -44,9 +44,13 @@ const Register = () => {
     const data = { username, email, password, role: "user" };
 
     try {
-      await registerUser(data).unwrap();
-      toast.success("Registration successful!");
-      navigate("/login");
+      const response = await registerUser(data).unwrap();
+      toast.success(response.message || "Registration successful!");
+      setMessage(response.message || "Please check your email to verify your account.");
+      // Clear form
+      setUsername("");
+      setEmail("");
+      setPassword("");
     } catch (error) {
       setMessage(error?.data?.message || "Registration failed");
       toast.error(error?.data?.message || "Error registering user");

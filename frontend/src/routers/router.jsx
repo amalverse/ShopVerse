@@ -9,6 +9,9 @@ import FavoritesPage from "../pages/shop/FavoritesPage";
 import SingleProduct from "../pages/shop/productDetails/SingleProduct";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
+import VerifyEmail from "../components/auth/VerifyEmail";
+import ForgotPassword from "../components/auth/ForgotPassword";
+import ResetPassword from "../components/auth/ResetPassword";
 import Contact from "../components/Contact";
 import BlogPage from "../pages/blog/BlogPage";
 import SingleBlogPage from "../pages/blog/SingleBlogPage";
@@ -72,6 +75,18 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/verify-email/:token",
+    element: <VerifyEmail />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/reset-password/:token",
+    element: <ResetPassword />,
   },
   {
     path: "/dashboard",

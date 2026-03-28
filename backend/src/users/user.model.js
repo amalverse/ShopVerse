@@ -4,12 +4,17 @@ const bcrypt = require("bcrypt");
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String, required: function() { return !this.googleId; } }, // Only required if not social login
   role: { type: String, default: "user" },
   profileImage: { type: String },
   bio: { type: String, maxlength: 200 },
   profession: { type: String },
   address: { type: Object },
+  isVerified: { type: Boolean, default: false },
+  verificationToken: { type: String },
+  resetPasswordToken: { type: String },
+  resetPasswordExpire: { type: Date },
+  googleId: { type: String },
   createdAt: { type: Date, default: Date.now },
 });
 

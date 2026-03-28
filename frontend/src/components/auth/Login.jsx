@@ -122,6 +122,20 @@ const Login = () => {
             </button>
           </form>
 
+          <div className="mt-6 flex flex-col space-y-4">
+            <button
+                onClick={() => window.location.href = `${import.meta.env.VITE_BASE_URL || 'http://localhost:3000'}/api/auth/google`}
+                className="w-full flex items-center justify-center gap-3 bg-white border-2 border-slate-100 hover:border-slate-300 text-slate-700 font-bold py-4 rounded-2xl transition-all"
+            >
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="Google" />
+                Sign in with Google
+            </button>
+
+            <Link to="/forgot-password" size="sm" className="text-sm text-center text-slate-500 hover:text-indigo-500 font-bold transition-all">
+                Forgot password?
+            </Link>
+          </div>
+
           <p className="mt-8 text-sm text-slate-500 text-center font-medium">
             New here?{" "}
             <Link to="/register" className="text-indigo-500 font-bold hover:underline underline-offset-4">

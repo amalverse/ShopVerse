@@ -6,6 +6,8 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./src/swagger/swagger");
 const morgan = require("morgan");
 const logger = require("./src/utils/logger");
+const session = require("express-session");
+const passport = require("./src/middleware/passport");
 
 const app = express();
 
@@ -16,10 +18,22 @@ app.use(morgan("combined", { stream: { write: (message) => logger.info(message.t
 // Setting limits so we can upload base64 images without crashing
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
-// Parse cookies from request headers
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// --- Session & Passport Initialization ---
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // --- CORS Configuration ---
 // Setting up CORS so frontend can talk to backend without errors
