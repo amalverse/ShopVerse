@@ -5,6 +5,7 @@ import Navbar from "../layout/Navbar";
 import { useLoginUserMutation } from "../../redux/features/auth/authApi";
 import { setUser } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
+import { getBaseURL } from "../../utils/baseURL";
 
 const Login = () => {
   const [message, setMessage] = useState("");
@@ -123,8 +124,8 @@ const Login = () => {
           </form>
 
           <div className="mt-6 flex flex-col space-y-4">
-            <button
-                onClick={() => window.location.href = `${import.meta.env.VITE_BASE_URL || 'http://localhost:3000'}/api/auth/google`}
+              <button
+                onClick={() => window.location.href = `${getBaseURL()}/api/auth/google`}
                 className="w-full flex items-center justify-center gap-3 bg-white border-2 border-slate-100 hover:border-slate-300 text-slate-700 font-bold py-4 rounded-2xl transition-all"
             >
                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="Google" />

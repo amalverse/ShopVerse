@@ -6,6 +6,15 @@ export const reviewApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${getBaseURL()}/api/reviews`,
     credentials: "include",
+    prepareHeaders: (headers, { getState }) => {
+      const state = getState();
+      const user = state.auth?.user;
+      const token = user?.token || user?.user?.token;
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   // Tag types help UI components react intelligently to remote server updates
   tagTypes: ["Reviews"],
