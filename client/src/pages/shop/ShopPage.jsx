@@ -17,6 +17,7 @@ const filters = {
   ],
   colors: ["all", "black", "red", "gold", "blue", "silver", "beige", "green"],
   priceRange: [
+    { label: "All Prices", value: "all" },
     { label: "under $50", min: 0, max: 50 },
     { label: "$50 - $100", min: 50, max: 100 },
     { label: "$100 - $200", min: 100, max: 200 },
@@ -28,7 +29,7 @@ const ShopPage = () => {
   const [filtersState, setFiltersState] = useState({
     category: "all",
     color: "all",
-    priceRange: null,
+    priceRange: "all",
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [ProductsPerPage] = useState(8);
@@ -42,7 +43,7 @@ const ShopPage = () => {
 
   let minPrice = "";
   let maxPrice = "";
-  if (priceRange) {
+  if (priceRange && priceRange !== "all") {
     const dashIndex = priceRange.lastIndexOf("-");
     const rawMin = priceRange.substring(0, dashIndex);
     const rawMax = priceRange.substring(dashIndex + 1);
@@ -69,7 +70,7 @@ const ShopPage = () => {
   });
 
   const clearFilters = () => {
-    setFiltersState({ category: "all", color: "all", priceRange: null });
+    setFiltersState({ category: "all", color: "all", priceRange: "all" });
     setCurrentPage(1);
   };
 

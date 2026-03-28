@@ -84,38 +84,57 @@ router.get("/verify-email/:token", async (req, res) => {
 router.post("/forgot-password", async (req, res) => {
     try {
         const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).send({ message: "Email is required" });
+        }
+
         const user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(404).send({ message: "User not found" });
+            return res.status(404).send({ message: "No account found with this email address" });
         }
 
-        // Generate reset token
+        // Generate a secure reset token
         const resetToken = crypto.randomBytes(32).toString("hex");
         user.resetPasswordToken = resetToken;
-        user.resetPasswordExpire = Date.now() + 3600000; // 1 hour
+        user.resetPasswordExpire = Date.now() + 3600000; // 1 hour expiry
         await user.save();
 
         const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
-        const message = `You are receiving this because you (or someone else) have requested the reset of the password for your account. Please click on the following link, or paste this into your browser to complete the process: ${resetUrl}`;
-        const html = `<h1>Reset Your Password</h1>
-                      <p>You requested a password reset. Please click the link below to reset it:</p>
-                      <a href="${resetUrl}">${resetUrl}</a>
-                      <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>`;
+        const html = `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h1 style="color: #6366F1;">Reset Your ShopVerse Password</h1>
+            <p>You requested a password reset. Click the button below to create a new password:</p>
+            <a href="${resetUrl}" style="display:inline-block; background:#6366F1; color:#fff; padding:12px 28px; border-radius:8px; text-decoration:none; font-weight:bold; margin: 16px 0;">
+              Reset Password
+            </a>
+            <p style="color:#888; font-size:14px;">This link expires in <strong>1 hour</strong>.</p>
+            <p style="color:#888; font-size:14px;">If you did not request this, you can safely ignore this email.</p>
+          </div>`;
 
-        await sendEmail({
-            email: user.email,
-            subject: "ShopVerse Password Reset",
-            message,
-            html
-        });
-
-        res.status(200).send({ message: "Password reset link sent to your email." });
+        try {
+            await sendEmail({
+                email: user.email,
+                subject: "ShopVerse — Password Reset Request",
+                message: `Reset your password by visiting: ${resetUrl}`,
+                html,
+            });
+            res.status(200).send({ message: "Password reset link sent! Please check your email inbox." });
+        } catch (emailError) {
+            // If email fails, clean up the token so it doesn't leave a dangling record
+            user.resetPasswordToken = undefined;
+            user.resetPasswordExpire = undefined;
+            await user.save();
+            logger.error(`Email send failed: ${emailError.message}`);
+            res.status(500).send({ message: "Failed to send reset email. Please check email configuration or try again later." });
+        }
     } catch (error) {
         logger.error(`Error in forgot-password: ${error.message}`, { stack: error.stack });
-        res.status(500).send({ message: "Error sending reset email" });
+        res.status(500).send({ message: "Something went wrong. Please try again." });
     }
 });
+
 
 // Reset Password endpoint
 router.post("/reset-password/:token", async (req, res) => {

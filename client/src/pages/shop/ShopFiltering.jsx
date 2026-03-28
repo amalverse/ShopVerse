@@ -126,7 +126,7 @@ const ShopFiltering = ({ filters, filtersState, setFiltersState, clearFilters })
         </h4>
         <div className="space-y-1">
           {filters.priceRange.map((range) => {
-            const value = `${range.min}-${range.max}`;
+            const value = range.value || `${range.min}-${range.max}`;
             const isActive = filtersState.priceRange === value;
             return (
               <label

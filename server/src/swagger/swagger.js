@@ -18,8 +18,8 @@ const options = {
     },
     servers: [
       {
-        url: process.env.BACKEND_URL || "http://localhost:3000",
-        description: "API Server",
+        url: "/",
+        description: "Dynamic API Server (Auto-detects host)",
       },
     ],
     components: {
@@ -724,6 +724,60 @@ const options = {
           },
         },
       },
+
+      // ══════════════════════════════════════════════════════════
+      //  CHATBOT  /api/chat
+      // ══════════════════════════════════════════════════════════
+      "/api/chat": {
+        post: {
+          tags: ["Chatbot"],
+          summary: "Interact with the AI E-Commerce Assistant",
+          description: "Send a message to the Gemini AI chatbot. Provides conversational memory and context-aware product recommendations.",
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  required: ["message"],
+                  properties: {
+                    message: { type: "string", example: "Can you recommend some good headphones?" },
+                    history: { 
+                      type: "array", 
+                      items: {
+                        type: "object",
+                        properties: {
+                          role: { type: "string", enum: ["user", "bot"] },
+                          text: { type: "string" }
+                        }
+                      }
+                    },
+                    pageContext: { type: "string", example: "User is viewing the cart." }
+                  },
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "AI structured response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      reply: { type: "string", example: "Sure! Check out our premium noise-cancelling headphones." },
+                      products: { type: "array", items: { $ref: "#/components/schemas/Product" } }
+                    }
+                  }
+                }
+              }
+            },
+            400: { description: "Message is required" },
+            500: { description: "API Key logic failed" }
+          }
+        }
+      }
     },
 
     tags: [
@@ -733,6 +787,7 @@ const options = {
       { name: "Orders", description: "Stripe checkout, order persistence, and status management" },
       { name: "Cart", description: "Per-user shopping cart operations" },
       { name: "Favorites", description: "Per-user saved / favourited products" },
+      { name: "Chatbot", description: "Google Gemini AI conversational agent" }
     ],
   },
   apis: [], // All paths defined inline above; no JSDoc scanning needed

@@ -12,7 +12,8 @@ const passport = require("./src/middleware/passport");
 const app = express();
 
 // --- HTTP Request Logging ---
-app.use(morgan("combined", { stream: { write: (message) => logger.info(message.trim()) } }));
+const morganFormat = process.env.NODE_ENV === "production" ? "combined" : "dev";
+app.use(morgan(morganFormat, { stream: { write: (message) => logger.info(message.trim()) } }));
 
 // --- Built-in & Third party Middlewares ---
 // Setting limits so we can upload base64 images without crashing

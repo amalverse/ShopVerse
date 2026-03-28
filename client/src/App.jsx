@@ -67,7 +67,6 @@ const App = () => {
     fetchCart();
   }, [dispatch, user]);
 
-  console.log("App: Rendering layout...");
 
   return (
     <>
