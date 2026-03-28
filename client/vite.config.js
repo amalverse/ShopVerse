@@ -9,24 +9,8 @@ export default defineConfig({
     tailwindcss(),
   ],
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            // Keep React core and its dependencies together to prevent Activity/initialization issues
-            if (id.includes("react") || id.includes("scheduler")) {
-              return "vendor-react-core";
-            }
-            // Isolate libraries that often cause cycles during default chunking
-            if (id.includes("framer-motion")) return "vendor-framer";
-            if (id.includes("swiper")) return "vendor-swiper";
-            if (id.includes("react-icons")) return "vendor-icons";
-            
-            return "vendor";
-          }
-        },
-      },
-    },
+    target: 'esnext',
+    minify: 'esbuild',
     chunkSizeWarningLimit: 1000,
   },
 });
