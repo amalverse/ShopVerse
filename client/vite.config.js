@@ -81,20 +81,22 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            // Keep React core and its mandatory internal dependency 'scheduler' together
+            const normalizedId = id.replace(/\\/g, "/");
+            // Group React core and key libs together to prevent initialization issues in React 19
             if (
-              id.includes("/react/") ||
-              id.includes("/react-dom/") ||
-              id.includes("/scheduler/") ||
-              id.includes("/react-is/")
+              normalizedId.includes("/react/") ||
+              normalizedId.includes("/react-dom/") ||
+              normalizedId.includes("/scheduler/") ||
+              normalizedId.includes("/react-is/") ||
+              normalizedId.includes("framer-motion") ||
+              normalizedId.includes("react-router") ||
+              normalizedId.includes("react-redux") ||
+              normalizedId.includes("@reduxjs/toolkit")
             ) {
-              return "vendor-react-core";
+              return "vendor-react";
             }
-            if (id.includes("framer-motion")) return "vendor-framer";
-            if (id.includes("stripe")) return "vendor-stripe";
-            if (id.includes("swiper")) return "vendor-swiper";
-            // Other react libraries like react-router, react-redux, etc.
-            if (id.includes("react")) return "vendor-react-libs";
+            if (normalizedId.includes("stripe")) return "vendor-stripe";
+            if (normalizedId.includes("swiper")) return "vendor-swiper";
             return "vendor";
           }
         },
