@@ -6,9 +6,9 @@ A modern, full-stack e-commerce web application built with **React**, **Node.js/
 
 ## 📸 Preview
 
-> **Frontend** runs on: `http://localhost:5173` and `https://shop-verse-full-stack-e-commerce-we.vercel.app/`
-> **Backend API** runs on: `http://localhost:5000` and `https://shopverse-full-stack-e-commerce-website.onrender.com`
-> **Swagger API Docs**: `http://localhost:5000/api-docs` and `https://shopverse-full-stack-e-commerce-website.onrender.com/api-docs`
+> **Frontend** runs on: `http://localhost:5173` 
+> **Backend API** runs on: `http://localhost:5000` 
+> **Swagger API Docs**: `http://localhost:5000/api-docs` 
 
 ---
 
