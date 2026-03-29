@@ -16,7 +16,7 @@
 > **Backend API**: [https://shopverse-3zu8.onrender.com](https://shopverse-3zu8.onrender.com)  
 > **Interactive API Docs**: [https://shopverse-3zu8.onrender.com/api-docs](https://shopverse-3zu8.onrender.com/api-docs)
 
-<img width="1366" height="6696" alt="Home Page- Shopverse" src="https://github.com/user-attachments/assets/04881ece-fe1b-49b4-b6ee-ef86e61a8367" />
+<img width="1200" height="6696" alt="Home Page- Shopverse" src="https://github.com/user-attachments/assets/04881ece-fe1b-49b4-b6ee-ef86e61a8367" />
 
 ---
 
@@ -89,11 +89,9 @@ ShopVerse/
 
 <img width="1366" height="605" alt="ADMIN Dashboard- Shopverse" src="https://github.com/user-attachments/assets/a788916c-6821-46b9-b2d9-e10afe4173e4" />
 
-<img width="439" height="470" alt="Chatbot- shopverse" src="https://github.com/user-attachments/assets/d9803b67-19fe-47df-9834-6e974347830b" />
-
 <img width="1366" height="605" alt="user dashboard- shopverse" src="https://github.com/user-attachments/assets/b25548b7-b175-416a-9461-e107475ce465" />
 
-
+<img width="439" height="470" alt="Chatbot- shopverse" src="https://github.com/user-attachments/assets/d9803b67-19fe-47df-9834-6e974347830b" />
 
 ---
 
