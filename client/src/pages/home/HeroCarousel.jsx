@@ -6,7 +6,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 // Sample Banner Data
 const banners = [
@@ -62,12 +61,7 @@ const HeroCarousel = () => {
           <SwiperSlide key={banner.id}>
             <div className={`grid grid-cols-1 lg:grid-cols-2 items-center gap-10 p-10 md:p-20 ${banner.color} h-full`}>
               {/* Text Content */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="max-w-xl text-center lg:text-left z-10"
-              >
+              <div className="max-w-xl text-center lg:text-left z-10">
                 <h4 className={`uppercase text-sm font-bold tracking-[0.2em] mb-4 ${banner.accent}`}>
                   {banner.subtitle}
                 </h4>
@@ -91,22 +85,17 @@ const HeroCarousel = () => {
                     View All
                   </Link>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Image Section */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                className="relative flex justify-center items-center"
-              >
+              <div className="relative flex justify-center items-center">
                 <div className="absolute inset-0 bg-white/40 rounded-full scale-75 animate-pulse"></div>
                 <img
                   src={banner.image}
                   alt={banner.title}
                   className="relative z-10 w-full max-w-[450px] md:max-w-[550px] drop-shadow-2xl object-contain h-auto"
                 />
-              </motion.div>
+              </div>
             </div>
           </SwiperSlide>
         ))}

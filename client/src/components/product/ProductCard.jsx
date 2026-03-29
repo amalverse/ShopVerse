@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice.js";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../../utils/baseURL";
-import { motion } from "framer-motion";
 
 const ProductCard = ({ product, isFavoritePage, onRemoveFavorite, onQuickView }) => {
   const dispatch = useDispatch();
@@ -65,17 +64,12 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite, onQuickView })
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ y: -8 }}
+    <div 
       className="bg-white border border-slate-100 shadow-sm transition-all duration-300 rounded-3xl overflow-hidden group hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-50 hover:border-indigo-100 relative"
     >
       <div className="relative overflow-hidden aspect-[4/5] bg-slate-50">
         <Link to={`/shop/${product._id}`} className="block h-full w-full">
-          <motion.img
+          <img
             src={product.image}
             alt={product.name}
             className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
@@ -155,7 +149,7 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite, onQuickView })
             <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Shop Now →</span>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 };
 

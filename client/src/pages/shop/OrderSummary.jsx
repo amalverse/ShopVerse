@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { RiBankCardFill } from "react-icons/ri";
-import { motion, AnimatePresence } from "framer-motion";
 import { clearCart } from "../../redux/features/cart/cartSlice";
 import { useCreateCheckoutSessionMutation } from "../../redux/features/orders/ordersApi";
 import { useEditProfileMutation } from "../../redux/features/auth/authApi";
@@ -122,11 +121,7 @@ const OrderSummary = () => {
   const inputClass = "w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-700 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent placeholder transition hover:bg-white";
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="text-sm"
-    >
+    <div className="text-sm">
       <div className="px-6 py-5 space-y-5">
         <h2 className="text-lg font-bold font-sans text-slate-800">Order Summary</h2>
 
@@ -139,20 +134,12 @@ const OrderSummary = () => {
             <span>Tax ({taxRate * 100}%)</span>
             <span className="font-semibold text-slate-700">${tax.toFixed(2)}</span>
           </div>
-          <motion.div 
-            layout
-            className="flex justify-between items-center border-t border-slate-100 pt-3 mt-1"
-          >
+          <div className="flex justify-between items-center border-t border-slate-100 pt-3 mt-1">
             <span className="font-bold text-slate-800 text-base">Grand Total</span>
-            <motion.span 
-              key={grandTotal}
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="text-indigo-600 font-black text-xl"
-            >
+            <span className="text-indigo-600 font-black text-xl">
               ${grandTotal.toFixed(2)}
-            </motion.span>
-          </motion.div>
+            </span>
+          </div>
         </div>
 
         <div className="border-t border-slate-100 pt-4 space-y-2">
@@ -179,12 +166,10 @@ const OrderSummary = () => {
         </div>
 
         <div className="space-y-3 pt-1">
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+          <button
             disabled={isProcessing}
             onClick={makePayment}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md active:shadow-sm text-sm disabled:opacity-75 disabled:cursor-not-allowed"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md active:shadow-sm text-sm disabled:opacity-75 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98]"
           >
             {isProcessing ? (
               <span className="flex items-center gap-2">
@@ -200,19 +185,17 @@ const OrderSummary = () => {
                 Proceed to Checkout
               </>
             )}
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.99 }}
+          </button>
+          <button
             onClick={(e) => { e.stopPropagation(); handleClearCart(); }}
-            className="w-full bg-white hover:bg-red-50 text-red-500 hover:text-red-600 border border-slate-200 hover:border-red-200 font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all text-sm"
+            className="w-full bg-white hover:bg-red-50 text-red-500 hover:text-red-600 border border-slate-200 hover:border-red-200 font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all text-sm hover:scale-[1.01] active:scale-[0.99]"
           >
             <AiTwotoneDelete className="text-lg" />
             Clear Cart
-          </motion.button>
+          </button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FiMapPin, FiMail, FiPhone, FiInstagram, FiTwitter, FiFacebook, FiYoutube, FiCheckCircle } from "react-icons/fi";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { useSelector } from "react-redux";
 
 import instagram1 from "../../assets/instagram-1.jpg";
@@ -26,9 +27,16 @@ const Footer = () => {
 
           {/* Column 1: Brand & Identity */}
           <div className="space-y-8">
-            <div className="nav-logo font-bold text-3xl font-sans tracking-tight">
-              <Link to="/" className="flex items-center gap-0.5">
-                <span className="text-indigo-600">Shop</span><span className="text-slate-900">Verse</span>
+            <div className="nav-logo">
+              <Link to="/" className="flex items-center gap-2.5 group transition-opacity hover:opacity-90">
+                <div className="w-10 h-10 bg-gradient-to-tr from-indigo-600 to-violet-600 rounded-xl flex items-center justify-center shadow-md shadow-indigo-100/50">
+                  <HiOutlineShoppingBag className="text-white text-xl" />
+                </div>
+                <span className="text-2xl font-black tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  <span className="text-slate-900">Shop</span>
+                  <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Verse</span>
+                  <span className="text-indigo-600">.</span>
+                </span>
               </Link>
             </div>
             <p className="text-slate-500 text-sm leading-relaxed max-w-xs font-medium">
