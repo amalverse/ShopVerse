@@ -19,7 +19,7 @@ const options = {
     servers: [
       {
         url: "/",
-        description: "Dynamic API Server (Auto-detects host)",
+        description: "Dynamic API Server",
       },
     ],
     components: {
@@ -742,8 +742,8 @@ const options = {
                   required: ["message"],
                   properties: {
                     message: { type: "string", example: "Can you recommend some good headphones?" },
-                    history: { 
-                      type: "array", 
+                    history: {
+                      type: "array",
                       items: {
                         type: "object",
                         properties: {
