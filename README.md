@@ -16,6 +16,8 @@
 > **Backend API**: [https://shopverse-3zu8.onrender.com](https://shopverse-3zu8.onrender.com)  
 > **Interactive API Docs**: [https://shopverse-3zu8.onrender.com/api-docs](https://shopverse-3zu8.onrender.com/api-docs)
 
+<img width="1366" height="6696" alt="Home Page- Shopverse" src="https://github.com/user-attachments/assets/04881ece-fe1b-49b4-b6ee-ef86e61a8367" />
+
 ---
 
 ## ✨ Core Features
@@ -77,6 +79,21 @@ ShopVerse/
 - **Stripe SDK** — Industrial-grade payment processing.
 - **Google Gemini SDK** — Cutting-edge AI for conversational commerce.
 - **Swagger/OpenAPI** — Fully documented API surface.
+
+---
+<img width="1366" height="2462" alt="Shop Page- ShopVerse" src="https://github.com/user-attachments/assets/284c986d-36f6-47df-96d2-ede4ce528863" />
+
+<img width="1366" height="1740" alt="Cart Page- Shopverse" src="https://github.com/user-attachments/assets/96ccbc36-325c-4349-90ba-732af19666e9" />
+
+<img width="1366" height="1742" alt="Wishlist Favs -Shopverse" src="https://github.com/user-attachments/assets/0abd9f05-24ae-4170-b076-d91bc4bc9083" />
+
+<img width="1366" height="605" alt="ADMIN Dashboard- Shopverse" src="https://github.com/user-attachments/assets/a788916c-6821-46b9-b2d9-e10afe4173e4" />
+
+<img width="439" height="470" alt="Chatbot- shopverse" src="https://github.com/user-attachments/assets/d9803b67-19fe-47df-9834-6e974347830b" />
+
+<img width="1366" height="605" alt="user dashboard- shopverse" src="https://github.com/user-attachments/assets/b25548b7-b175-416a-9461-e107475ce465" />
+
+
 
 ---
 
@@ -162,8 +179,6 @@ Distributed under the **ISC License**. See `LICENSE` for more information.
 <p align="center">
   Built with ❤️ by <b>Amal Kishor</b>
 </p>
-ing**: A `_redirects` file is included in `public/` to ensure React Router works natively without 404 errors.
-
 ---
 
 ## 👨‍💻 Author
