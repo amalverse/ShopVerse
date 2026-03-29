@@ -110,8 +110,13 @@ const Chatbot = () => {
 
   // Auto-scroll to bottom
   useEffect(() => {
-    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isOpen]);
+    if (isOpen) {
+      const scrollTimer = setTimeout(() => {
+        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+      return () => clearTimeout(scrollTimer);
+    }
+  }, [messages, isOpen, isLoading]);
 
   const toggleChat = () => setIsOpen((prev) => !prev);
 
@@ -187,11 +192,11 @@ const Chatbot = () => {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
       {/* ── Chat Window ── */}
       {isOpen && (
-        <div className="bg-white rounded-2xl shadow-2xl w-80 sm:w-96 flex flex-col overflow-hidden border border-gray-100 transition-all duration-300">
+        <div className="bg-white rounded-2xl shadow-2xl w-[340px] sm:w-[420px] max-h-[600px] flex flex-col overflow-hidden border border-gray-100 transition-all duration-300 animate-scale-in">
           {/* Header */}
-          <div className="bg-indigo-500 text-white p-4 flex justify-between items-center">
+          <div className="bg-indigo-500 text-white p-4 flex justify-between items-center shadow-sm shrink-0">
             <h3 className="font-semibold text-base flex items-center gap-2">
-              <FaCommentDots />
+              <FaCommentDots className="animate-pulse" />
               ShopVerse Assistant
             </h3>
             <button onClick={toggleChat} className="text-white hover:text-indigo-200 transition-colors">
@@ -200,7 +205,7 @@ const Chatbot = () => {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 p-3 h-96 overflow-y-auto bg-gray-50 flex flex-col gap-3">
+          <div className="flex-1 p-4 h-[450px] overflow-y-auto bg-[#FBFBFF] flex flex-col gap-4 scroll-smooth">
             {messages.map((msg, index) => (
               <div key={index} className="flex flex-col gap-2">
                 {/* Role label for bot */}
