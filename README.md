@@ -16,7 +16,7 @@
 > **Backend API**: [https://shopverse-3zu8.onrender.com](https://shopverse-3zu8.onrender.com)  
 > **Interactive API Docs**: [https://shopverse-3zu8.onrender.com/api-docs](https://shopverse-3zu8.onrender.com/api-docs)
 
-<img width="1000" height="6696" alt="Home Page- Shopverse" src="https://github.com/user-attachments/assets/04881ece-fe1b-49b4-b6ee-ef86e61a8367" />
+<img width="800" height="6696" alt="Home Page- Shopverse" src="https://github.com/user-attachments/assets/04881ece-fe1b-49b4-b6ee-ef86e61a8367" />
 
 ---
 
