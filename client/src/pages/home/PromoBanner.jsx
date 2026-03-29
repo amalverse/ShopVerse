@@ -39,7 +39,7 @@ const PromoBanner = () => {
         {features.map((item, idx) => (
           <div 
             key={idx} 
-            className="group glass-card p-8 rounded-[2.5rem] hover:-translate-y-2 transition-all text-center flex flex-col items-center"
+            className="group bg-white border border-slate-100 shadow-sm p-8 rounded-[2.5rem] hover:-translate-y-2 transition-all text-center flex flex-col items-center hover:shadow-lg"
           >
             <div className={`w-16 h-16 ${item.bg} ${item.color} rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm group-hover:scale-110 transition-transform`}>
                {item.icon}

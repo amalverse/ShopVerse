@@ -42,89 +42,92 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <AnimatePresence mode="wait">
+      {isOpen && product && (
+        <div key="quickview-modal" className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px]"
           />
 
-          {/* Modal */}
+          {/* Modal Content */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-4xl glass-modal rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
+            exit={{ opacity: 0, scale: 0.95, y: 30 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="relative w-full max-w-4xl bg-white shadow-2xl rounded-3xl overflow-hidden flex flex-col md:flex-row max-h-[90vh]"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full glass hover:bg-white transition shadow-lg"
+              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 hover:bg-white transition shadow-lg text-slate-500 hover:text-indigo-600"
             >
               <HiOutlineXMark className="text-xl" />
             </button>
 
-            {/* Left: Image */}
-            <div className="md:w-1/2 h-[300px] md:h-auto overflow-hidden bg-slate-50">
+            {/* Left: Image Container */}
+            <div className="md:w-1/2 h-[300px] md:h-auto overflow-hidden bg-slate-50 border-r border-slate-100 flex items-center justify-center">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>
 
-            {/* Right: Info */}
-            <div className="md:w-1/2 p-8 md:p-12 flex flex-col h-full overflow-y-auto bg-white/40">
-              <div className="mb-2">
-                <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-[0.2em]">
+            {/* Right: Info Area */}
+            <div className="md:w-1/2 p-6 md:p-10 flex flex-col h-full overflow-y-auto bg-white">
+              <div className="mb-4">
+                <span className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em] bg-indigo-50 px-3 py-1.5 rounded-full">
                   {product.category}
                 </span>
               </div>
               
-              <h2 className="text-3xl font-black font-sans text-slate-800 mb-4 leading-tight">
+              <h2 className="text-2xl md:text-3xl font-black font-sans text-slate-800 mb-2 leading-tight">
                 {product.name}
               </h2>
 
               <div className="flex items-center gap-3 mb-6">
                 <RatingStars rating={product.rating} />
-                <span className="text-sm font-bold text-slate-400">({product.rating} / 5.0)</span>
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest border-l border-slate-200 pl-3">
+                  {product.rating} Rating
+                </span>
               </div>
 
               <div className="flex items-baseline gap-3 mb-8">
-                <span className="text-4xl font-black text-indigo-600 font-sans">${product.price}</span>
+                <span className="text-4xl font-black text-indigo-600 font-sans tracking-tight">${product.price}</span>
                 {product.oldPrice && (
-                  <span className="text-lg text-slate-400 line-through font-medium">${product.oldPrice}</span>
+                  <span className="text-lg text-slate-400 line-through font-medium ml-1">${product.oldPrice}</span>
                 )}
               </div>
 
-              <div className="space-y-4 mb-10">
-                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest">Description</h4>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  {product.description || "Indulge in our premium quality product, crafted with the finest materials to ensure lasting comfort and unmatched style. Perfect for those who value both elegance and durability."}
+              <div className="space-y-3 mb-10 bg-slate-50/50 p-5 rounded-2xl border border-slate-100">
+                <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.1em]">Key Features</h4>
+                <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                  {product.description || "Indulge in our premium quality product, crafted with the finest materials to ensure lasting comfort and unmatched style. Ideal for all seasons and settings."}
                 </p>
               </div>
 
               <div className="mt-auto flex gap-4">
                 <button
                   onClick={handleAddToCart}
-                  className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-indigo-200 translate-y-0 active:translate-y-1"
+                  className="flex-1 bg-indigo-600 hover:bg-bold text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-xl shadow-indigo-100 active:scale-[0.98]"
                 >
                   <HiOutlineShoppingBag className="text-xl" />
                   Add to Cart
                 </button>
-                <button className="p-4 rounded-2xl border border-slate-200 text-slate-600 hover:text-red-500 hover:bg-red-50 transition-all">
+                <button className="p-4 rounded-2xl bg-white border border-slate-200 text-slate-400 hover:text-red-500 hover:bg-red-50 hover:border-red-100 transition-all shadow-sm">
                   <HiOutlineHeart className="text-xl" />
                 </button>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-slate-100">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                  ✈ Free Shipping on orders over $150
+              <div className="mt-8 pt-6 border-t border-slate-100 text-center">
+                <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] flex items-center justify-center gap-2">
+                   Free Premium Shipping <span className="text-indigo-400">•</span> Easy Returns
                 </p>
               </div>
             </div>

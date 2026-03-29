@@ -34,7 +34,7 @@ const BlogPage = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-white/90 backdrop-blur-sm px-4 py-1 rounded-full text-xs font-bold text-indigo-500 shadow-sm uppercase tracking-wider">
+                  <span className="bg-white px-4 py-1 rounded-full text-xs font-bold text-indigo-500 shadow-sm uppercase tracking-wider">
                     {blog.subtitle}
                   </span>
                 </div>

@@ -110,7 +110,7 @@ const ShopPage = () => {
         <div className="md:hidden mb-6">
           <button
             onClick={() => setSidebarOpen((o) => !o)}
-            className="w-full flex items-center justify-center gap-2 glass-card text-slate-700 text-sm font-bold px-4 py-3.5 rounded-2xl shadow-sm hover:border-indigo-400 transition"
+            className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 text-sm font-bold px-4 py-3.5 rounded-2xl shadow-sm hover:border-indigo-400 transition"
           >
             <RiFilterLine className="text-indigo-600 text-lg" />
             {sidebarOpen ? "Hide Filter Options" : "Show Filter Options"}
@@ -150,14 +150,14 @@ const ShopPage = () => {
             )}
 
             {isError && !isLoading && (
-              <div className="py-24 text-center glass-card rounded-3xl">
+              <div className="py-24 text-center bg-white border border-slate-100 shadow-sm rounded-3xl">
                 <p className="text-slate-500 text-lg font-bold">⚠️ Connection Error</p>
                 <p className="text-slate-400 text-sm mt-2">Unable to load the catalog. Please check your connection.</p>
               </div>
             )}
 
             {!isLoading && !isError && products.length === 0 && (
-              <div className="py-24 text-center glass-card rounded-3xl">
+              <div className="py-24 text-center bg-white border border-slate-100 shadow-sm rounded-3xl">
                 <div className="text-6xl mb-6">🏜️</div>
                 <h4 className="text-2xl font-black text-slate-800 font-sans mb-3">No Results Found</h4>
                 <p className="text-slate-400 text-sm mb-8 max-w-xs mx-auto">
@@ -180,7 +180,7 @@ const ShopPage = () => {
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className="px-6 py-3 text-sm font-bold glass-card text-slate-700 rounded-2xl shadow-sm hover:border-indigo-400 hover:text-indigo-600 transition disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="px-6 py-3 text-sm font-bold bg-white border border-slate-200 text-slate-700 rounded-2xl shadow-sm hover:border-indigo-400 hover:text-indigo-600 transition disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     Previous
                   </button>
@@ -192,7 +192,7 @@ const ShopPage = () => {
                       className={`w-12 h-12 text-sm font-black rounded-2xl transition-all ${
                         currentPage === index + 1
                           ? "bg-indigo-600 text-white shadow-lg"
-                          : "glass-card text-slate-500 hover:border-indigo-400 hover:text-indigo-600"
+                          : "bg-white border border-slate-200 text-slate-500 hover:border-indigo-400 hover:text-indigo-600 shadow-sm"
                       }`}
                     >
                       {index + 1}
@@ -202,7 +202,7 @@ const ShopPage = () => {
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages || totalPages === 0}
-                    className="px-6 py-3 text-sm font-bold glass-card text-slate-700 rounded-2xl shadow-sm hover:border-indigo-400 hover:text-indigo-600 transition disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="px-6 py-3 text-sm font-bold bg-white border border-slate-200 text-slate-700 rounded-2xl shadow-sm hover:border-indigo-400 hover:text-indigo-600 transition disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     Next
                   </button>

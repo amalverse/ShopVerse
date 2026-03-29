@@ -57,7 +57,7 @@ const PostAReview = ({ isModalOpen, handleClose }) => {
   if (!isModalOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-[100] px-4 animate-in fade-in duration-300">
+    <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-[100] px-4 animate-in fade-in duration-300">
       <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl w-full max-w-lg z-[110] relative animate-in zoom-in-95 duration-300 border border-slate-100">
         <button
           onClick={handleClose}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import ProductCards from "../../components/product/ProductCards";
+import QuickViewModal from "../../components/product/QuickViewModal";
 import { BASE_URL } from "../../utils/baseURL";
 
 const categoryMeta = {
@@ -16,6 +17,10 @@ const CategoryPage = () => {
   const { categoryName } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Quick View State
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
   const meta = categoryMeta[categoryName?.toLowerCase()] || {
     icon: "🛍️",
@@ -38,6 +43,11 @@ const CategoryPage = () => {
         setIsLoading(false);
       });
   }, [categoryName]);
+
+  const handleQuickView = (product) => {
+    setSelectedProduct(product);
+    setIsQuickViewOpen(true);
+  };
 
   return (
     <div className="bg-[#F8FAFC] min-h-screen">
@@ -101,10 +111,16 @@ const CategoryPage = () => {
               {filteredProducts.length === 1 ? "product" : "products"} found in{" "}
               <span className="text-indigo-600 font-semibold">{meta.label}</span>
             </p>
-            <ProductCards products={filteredProducts} />
+            <ProductCards products={filteredProducts} onQuickView={handleQuickView} />
           </>
         )}
       </div>
+
+      <QuickViewModal
+        product={selectedProduct}
+        isOpen={isQuickViewOpen}
+        onClose={() => setIsQuickViewOpen(false)}
+      />
     </div>
   );
 };

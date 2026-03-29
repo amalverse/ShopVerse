@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import ProductCards from "../../components/product/ProductCards";
+import QuickViewModal from "../../components/product/QuickViewModal";
 import { BASE_URL } from "../../utils/baseURL";
 
 const Search = () => {
@@ -9,6 +10,10 @@ const Search = () => {
 
   const [allProducts, setAllProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Quick View State
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
   useEffect(() => {
     fetch(`${BASE_URL}/products`)
@@ -32,6 +37,11 @@ const Search = () => {
       return queryWords.some((word) => name.includes(word) || description.includes(word));
     });
   })();
+
+  const handleQuickView = (product) => {
+    setSelectedProduct(product);
+    setIsQuickViewOpen(true);
+  };
 
   return (
     <div className="bg-[#F8FAFC] min-h-screen">
@@ -101,9 +111,15 @@ const Search = () => {
 
         {/* Results */}
         {!isLoading && filteredProducts.length > 0 && (
-          <ProductCards products={filteredProducts} />
+          <ProductCards products={filteredProducts} onQuickView={handleQuickView} />
         )}
       </div>
+
+      <QuickViewModal
+        product={selectedProduct}
+        isOpen={isQuickViewOpen}
+        onClose={() => setIsQuickViewOpen(false)}
+      />
     </div>
   );
 };

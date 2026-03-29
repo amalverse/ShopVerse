@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductCards from "../../components/product/ProductCards";
+import QuickViewModal from "../../components/product/QuickViewModal";
 import { BASE_URL } from "../../utils/baseURL";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,6 +8,10 @@ import { Link } from "react-router-dom";
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Quick View State
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -43,6 +48,11 @@ const FavoritesPage = () => {
     } catch (err) {
       console.error("Error removing favorite:", err);
     }
+  };
+
+  const handleQuickView = (product) => {
+    setSelectedProduct(product);
+    setIsQuickViewOpen(true);
   };
 
   return (
@@ -119,9 +129,16 @@ const FavoritesPage = () => {
             products={favorites}
             isFavoritePage={true}
             onRemoveFavorite={handleRemoveFavorite}
+            onQuickView={handleQuickView}
           />
         )}
       </div>
+
+      <QuickViewModal
+        product={selectedProduct}
+        isOpen={isQuickViewOpen}
+        onClose={() => setIsQuickViewOpen(false)}
+      />
     </div>
   );
 };

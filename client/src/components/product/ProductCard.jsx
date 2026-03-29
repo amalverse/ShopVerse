@@ -71,9 +71,9 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite, onQuickView })
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -8 }}
-      className="glass-card rounded-3xl overflow-hidden group hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(99,102,241,0.15)] transition-all duration-300 relative"
+      className="bg-white border border-slate-100 shadow-sm transition-all duration-300 rounded-3xl overflow-hidden group hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-50 hover:border-indigo-100 relative"
     >
-      <div className="relative overflow-hidden aspect-[4/5] bg-slate-50/30">
+      <div className="relative overflow-hidden aspect-[4/5] bg-slate-50">
         <Link to={`/shop/${product._id}`} className="block h-full w-full">
           <motion.img
             src={product.image}
@@ -82,14 +82,14 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite, onQuickView })
           />
         </Link>
         
-        <div className="absolute top-4 right-[-60px] group-hover:right-4 flex flex-col gap-2 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+        <div className="absolute top-4 right-4 flex flex-col gap-2 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] opacity-0 transform translate-x-8 group-hover:opacity-100 group-hover:translate-x-0 z-10">
           {isFavoritePage ? (
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 if (onRemoveFavorite) onRemoveFavorite(product._id);
               }}
-              className="bg-white/95 backdrop-blur-md p-3.5 text-slate-400 hover:text-red-500 rounded-2xl shadow-xl hover:bg-red-50 transition-all transform hover:rotate-6 border border-slate-100"
+              className="bg-white p-3.5 text-slate-400 hover:text-red-500 rounded-2xl shadow-xl hover:bg-red-50 transition-all transform hover:rotate-6 border border-slate-100"
               title="Remove"
             >
               <FiTrash2 className="w-5 h-5" />
@@ -100,7 +100,7 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite, onQuickView })
                 e.stopPropagation();
                 handleAddToFavorites(product);
               }}
-              className="bg-white/95 backdrop-blur-md p-3.5 text-slate-400 hover:text-red-500 rounded-2xl shadow-xl hover:bg-red-50 transition-all transform hover:rotate-6 border border-slate-100"
+              className="bg-white p-3.5 text-slate-400 hover:text-red-500 rounded-2xl shadow-xl hover:bg-red-50 transition-all transform hover:rotate-6 border border-slate-100"
               title="Add to Favourites"
             >
               <FiHeart className="w-5 h-5" />
@@ -112,7 +112,7 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite, onQuickView })
               e.stopPropagation();
               if (onQuickView) onQuickView(product);
             }}
-            className="bg-white/95 backdrop-blur-md p-3.5 text-slate-400 hover:text-indigo-600 rounded-2xl shadow-xl hover:bg-indigo-50 transition-all transform hover:rotate-3 border border-slate-100"
+            className="bg-white p-3.5 text-slate-400 hover:text-indigo-600 rounded-2xl shadow-xl hover:bg-indigo-50 transition-all transform hover:rotate-3 border border-slate-100"
             title="Quick View"
           >
             <FiEye className="w-5 h-5" />
@@ -123,7 +123,7 @@ const ProductCard = ({ product, isFavoritePage, onRemoveFavorite, onQuickView })
               e.stopPropagation();
               handleAddToCart(product);
             }}
-            className="bg-white/95 backdrop-blur-md p-3.5 text-slate-400 hover:text-indigo-600 rounded-2xl shadow-xl hover:bg-indigo-50 transition-all transform hover:-rotate-6 border border-slate-100"
+            className="bg-white p-3.5 text-slate-400 hover:text-indigo-600 rounded-2xl shadow-xl hover:bg-indigo-50 transition-all transform hover:-rotate-6 border border-slate-100"
             title="Add to Cart"
           >
             <FiShoppingBag className="w-5 h-5" />

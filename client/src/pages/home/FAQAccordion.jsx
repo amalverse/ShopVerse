@@ -42,7 +42,7 @@ const FAQAccordion = () => {
           {faqData.map((item, index) => (
             <div
               key={index}
-              className="glass-card rounded-2xl overflow-hidden mb-4"
+              className="bg-white border border-slate-100 shadow-sm rounded-2xl overflow-hidden mb-4"
             >
               <button
                 onClick={() => toggleAccordion(index)}

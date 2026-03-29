@@ -17,7 +17,7 @@ const banners = [
     description: "Explore our new range of solar-powered and energy-efficient gadgets.",
     image: "/banner-electronics.png",
     link: "/shop?category=electronics",
-    color: "glass-card bg-emerald-50/30",
+    color: "bg-emerald-50",
     accent: "text-emerald-600",
     btnColor: "bg-emerald-600 hover:bg-emerald-700",
   },
@@ -28,7 +28,7 @@ const banners = [
     description: "Discover luxury watches and artisanal jewelry crafted for timeless style.",
     image: "/banner-accessories.png",
     link: "/shop?category=accessories",
-    color: "glass-card bg-amber-50/30",
+    color: "bg-amber-50",
     accent: "text-amber-600",
     btnColor: "bg-amber-600 hover:bg-amber-700",
   },
@@ -39,7 +39,7 @@ const banners = [
     description: "Upgrade your wardrobe with our latest lightweight and breathable arrivals.",
     image: "/banner-clothing.png",
     link: "/shop?category=clothing",
-    color: "glass-card bg-indigo-50/30",
+    color: "bg-indigo-50",
     accent: "text-indigo-600",
     btnColor: "bg-indigo-600 hover:bg-indigo-700",
   },
@@ -100,7 +100,7 @@ const HeroCarousel = () => {
                 transition={{ duration: 1, delay: 0.3 }}
                 className="relative flex justify-center items-center"
               >
-                <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full scale-75 animate-pulse"></div>
+                <div className="absolute inset-0 bg-white/40 rounded-full scale-75 animate-pulse"></div>
                 <img
                   src={banner.image}
                   alt={banner.title}

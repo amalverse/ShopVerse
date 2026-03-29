@@ -4,7 +4,7 @@ import dealImg from "../../assets/deals.png";
 const DealsSection = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-      <div className="rounded-3xl grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center glass-strong p-6 sm:p-10 lg:p-12 overflow-hidden relative group">
+      <div className="rounded-3xl grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center bg-white border border-slate-100 shadow-2xl p-6 sm:p-10 lg:p-12 overflow-hidden relative group">
         <div className="relative h-full order-2 md:order-1 flex justify-center object-contain">
           <img src={dealImg} alt="Deals" className="max-h-[300px] sm:max-h-[400px] object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500" />
         </div>
@@ -18,19 +18,19 @@ const DealsSection = () => {
             Discover our exclusive monthly deals! Upgrade your wardrobe with premium styles at unbeatable prices. Don't miss out on these limited-time offers.
           </p>
           <div className="flex flex-wrap gap-3 sm:gap-4 items-center">
-            <div className="flex flex-col items-center justify-center glass rounded-2xl w-20 h-20 sm:w-24 sm:h-24 transition-transform hover:-translate-y-1 group-hover:shadow-lg">
+            <div className="flex flex-col items-center justify-center bg-white border border-slate-100 shadow-sm rounded-2xl w-20 h-20 sm:w-24 sm:h-24 transition-transform hover:-translate-y-1 group-hover:shadow-lg">
               <h4 className="text-2xl sm:text-3xl font-black text-indigo-600">14</h4>
               <p className="font-semibold text-slate-500 text-sm">Days</p>
             </div>
-            <div className="flex flex-col items-center justify-center glass rounded-2xl w-20 h-20 sm:w-24 sm:h-24 transition-transform hover:-translate-y-1 group-hover:shadow-lg">
+            <div className="flex flex-col items-center justify-center bg-white border border-slate-100 shadow-sm rounded-2xl w-20 h-20 sm:w-24 sm:h-24 transition-transform hover:-translate-y-1 group-hover:shadow-lg">
               <h4 className="text-2xl sm:text-3xl font-black text-indigo-600">20</h4>
               <p className="font-semibold text-slate-500 text-sm">Hours</p>
             </div>
-            <div className="flex flex-col items-center justify-center glass rounded-2xl w-20 h-20 sm:w-24 sm:h-24 transition-transform hover:-translate-y-1 group-hover:shadow-lg">
+            <div className="flex flex-col items-center justify-center bg-white border border-slate-100 shadow-sm rounded-2xl w-20 h-20 sm:w-24 sm:h-24 transition-transform hover:-translate-y-1 group-hover:shadow-lg">
               <h4 className="text-2xl sm:text-3xl font-black text-indigo-600">50</h4>
               <p className="font-semibold text-slate-500 text-sm">Mins</p>
             </div>
-            <div className="flex flex-col items-center justify-center glass rounded-2xl w-20 h-20 sm:w-24 sm:h-24 transition-transform hover:-translate-y-1 group-hover:shadow-lg">
+            <div className="flex flex-col items-center justify-center bg-white border border-slate-100 shadow-sm rounded-2xl w-20 h-20 sm:w-24 sm:h-24 transition-transform hover:-translate-y-1 group-hover:shadow-lg">
               <h4 className="text-2xl sm:text-3xl font-black text-indigo-600">10</h4>
               <p className="font-semibold text-slate-500 text-sm">Secs</p>
             </div>

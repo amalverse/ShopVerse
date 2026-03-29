@@ -47,7 +47,7 @@ const Categories = () => {
             to={`/categories${category.path}`}
             className="group flex flex-col items-center"
           >
-            <div className="relative w-40 h-40 sm:w-56 sm:h-56 rounded-[2.5rem] overflow-hidden glass-card group-hover:-translate-y-2 transition-all p-2">
+            <div className="relative w-40 h-40 sm:w-56 sm:h-56 rounded-[2.5rem] overflow-hidden bg-white border border-slate-100 shadow-sm group-hover:-translate-y-2 transition-all p-2 group-hover:shadow-lg group-hover:border-indigo-100/50">
               <img
                 src={category.image}
                 alt={category.name}

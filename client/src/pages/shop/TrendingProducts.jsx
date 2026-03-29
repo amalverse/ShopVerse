@@ -3,11 +3,16 @@ import ProductCards from "../../components/product/ProductCards";
 import { BASE_URL } from "../../utils/baseURL";
 import { FiTrendingUp, FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import QuickViewModal from "../../components/product/QuickViewModal";
 
 const TrendingProducts = () => {
   const [products, setProducts] = useState([]);
   const [visibleProducts, setVisibleProducts] = useState(8);
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Quick View State
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
   useEffect(() => {
     fetch(`${BASE_URL}/products`)
@@ -25,6 +30,11 @@ const TrendingProducts = () => {
 
   const loadMoreProducts = () => {
     setVisibleProducts((prevCount) => prevCount + 4);
+  };
+
+  const handleQuickView = (product) => {
+    setSelectedProduct(product);
+    setIsQuickViewOpen(true);
   };
 
   return (
@@ -52,7 +62,10 @@ const TrendingProducts = () => {
              <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Updating trends...</p>
           </div>
         ) : (
-          <ProductCards products={products.slice(0, visibleProducts)} />
+          <ProductCards 
+            products={products.slice(0, visibleProducts)} 
+            onQuickView={handleQuickView}
+          />
         )}
 
         {/* Action Buttons */}
@@ -67,13 +80,19 @@ const TrendingProducts = () => {
           )}
           <Link
             to="/shop"
-            className="w-full md:w-auto px-10 py-4 glass-card text-slate-600 font-bold rounded-2xl hover:text-indigo-600 hover:border-indigo-300 transition-all flex items-center justify-center gap-2 group"
+            className="w-full md:w-auto px-10 py-4 bg-white border border-slate-200 text-slate-600 font-bold rounded-2xl hover:text-indigo-600 hover:border-indigo-300 transition-all flex items-center justify-center gap-2 group shadow-sm hover:shadow-md"
           >
             Explore Full Shop
             <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>
+      
+      <QuickViewModal
+        product={selectedProduct}
+        isOpen={isQuickViewOpen}
+        onClose={() => setIsQuickViewOpen(false)}
+      />
     </section>
   );
 };
